@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\ResetPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,4 @@ Route::get('/', function () {
 
 Route::get('/Login', [LoginController::class, 'LoginPage']);
 Route::get('/ForgotPassword', [ForgotPasswordController::class, 'ForgotPasswordPage']);
+Route::get('/ResetPassword', [ResetPasswordController::class, 'ResetPasswordPage']);
