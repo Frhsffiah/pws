@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\RegisterController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +21,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Login (Module 1)
 Route::get('/Login', [LoginController::class, 'LoginPage']);
-Route::get('/ForgotPassword', [ForgotPasswordController::class, 'ForgotPasswordPage']);
+Route::get('/ForgotPassword', [LoginController::class, 'ForgotPasswordPage']);
+Route::get('/ResetPassword', [ResetPasswordController::class, 'ResetPasswordPage']);
+
+//Register (Module 1)
+Route::get('/RegisterForm', [RegisterController::class, 'RegisterPage']);

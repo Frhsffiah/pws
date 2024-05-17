@@ -10,4 +10,9 @@ class LoginController extends Controller
     {
         return 'Hi';
     }
+
+    public  function ForgotPasswordPage()
+    {
+        return 'Hi';
+    }
 }

@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ForgotPasswordController extends Controller
+class ResetPasswordController extends Controller
 {
-    public  function ForgotPasswordPage()
+    public  function ResetPasswordPage()
     {
         return 'Bye';
     }
