@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 class ExpertController extends Controller
 {
-    public function expertView(){
+    public function expertView()
+    {
         return view ('expert.expertView');
     }
 }
