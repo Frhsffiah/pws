@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
     <title>Login Form</title>
-    <link rel="stylesheet" href="login.css">
+    <link href="{{asset('Module_1/login.css')}}" rel="stylesheet">
 </head>
 
 <body>
@@ -12,8 +13,8 @@
         <h3>Login</h3>
         <form action="">
             <label for="username">
-                  USERNAME:
-                  
+                  Username:
+
               </label>
             <input type="text" id="username" name="username" placeholder="Enter your Username" required>
 
@@ -26,7 +27,7 @@
                 Type of User:
             </label>
             <select id="user" name="user" required>
-                <option value="">Chose a user</option>
+                <option value="">Choose a user</option>
                 <option value="staff">STAFF</option>
                 <option value="student">PLATINUM</option>
                 <option value="admin">MENTOR</option>
