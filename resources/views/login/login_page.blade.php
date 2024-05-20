@@ -12,7 +12,8 @@
         <h3>Login</h3>
         <form action="">
             <label for="username">
-                  Username:
+                  USERNAME:
+                  
               </label>
             <input type="text" id="username" name="username" placeholder="Enter your Username" required>
 
