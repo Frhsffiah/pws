@@ -8,7 +8,7 @@ class LoginController extends Controller
 {
     public  function LoginPage()
     {
-        return 'Hi';
+        return view('login.login_page');
     }
 
     public  function ForgotPasswordPage()
