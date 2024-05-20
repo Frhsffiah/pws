@@ -5,6 +5,7 @@ use App\Http\Controllers\ExpertController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\PublicationController;
 
 
 /*
@@ -32,3 +33,6 @@ Route::get('/Register', [RegisterController::class, 'RegisterPage']);
 
 //Module 2 (Expert)
 Route::get('/Expert', [ExpertController::class, 'expertView']);
+
+//Module 3 (Publication)
+Route::get('/Publication', [PublicationController::class, 'publicationView']);
