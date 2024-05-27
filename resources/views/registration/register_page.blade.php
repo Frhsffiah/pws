@@ -1,4 +1,4 @@
-@extends('main.staffmain')
+@extends('components.staffLayout')
 
 @section('staff')
 
