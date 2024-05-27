@@ -8,6 +8,6 @@ class ResetPasswordController extends Controller
 {
     public  function ResetPasswordPage()
     {
-        return 'Bye';
+        return view('login.reset_password_page');
     }
 }

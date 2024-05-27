@@ -13,6 +13,6 @@ class LoginController extends Controller
 
     public  function ForgotPasswordPage()
     {
-        return 'Hi';
+        return view('login.forgot_password_page');
     }
 }
