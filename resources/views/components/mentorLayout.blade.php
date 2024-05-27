@@ -1,7 +1,7 @@
 
-  <head>
+<head>
     <meta charset="UTF-8">
-    <title> e-Platinum World </title>
+    <title> e-Platinum World</title>
    
     <!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -283,7 +283,7 @@ body{
   <div class="sidebar close">
     <div class="logo-details">
       <i class='bx bxl-c-plus-plus'></i>
-      <span class="logo_name">Platinum</span>
+      <span class="logo_name">Mentor</span>
     </div>
     <ul class="nav-links">
       <li>
@@ -306,9 +306,23 @@ body{
         <ul class="sub-menu">
           <li><a class="link_name" href="#">Profile</a></li>
           <li><a href="#">My Profile</a></li>
-          <li><a href="#">Platinum Profile</a></li>
+          <li><a href="#">Staff Profile</a></li>
+          <li><a href="#">Mentor Profile</a></li>
         </ul>
       </li>
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class='bx bx-book-alt' ></i>
+            <span class="link_name">Registration</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Registration</a></li>
+        </ul>
+      </li>
+
       <li>
         <div class="iocn-link">
           <a href="#">
@@ -319,8 +333,6 @@ body{
         </div>
         <ul class="sub-menu">
           <li><a class="link_name" href="#">Expert</a></li>
-          <li><a href="#">My Expert</a></li>
-          <li><a href="#">Expert List</a></li>
         </ul>
       </li>
       <li>
@@ -332,8 +344,8 @@ body{
           <li><a class="link_name" href="#">Publications</a></li>
         </ul>
       </li>
-     
-      <li>
+      
+    <li>
     <div class="profile-details">
       <i class='bx bx-log-out' ></i>
     </div>
