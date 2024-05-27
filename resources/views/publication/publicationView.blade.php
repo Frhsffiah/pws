@@ -6,8 +6,13 @@
     <title>PublicationView</title>
 </head>
 <body>
-    <h1>
-        publication page
-    </h1>
+
+@extends('main.platinummain')
+
+@section('platinum')
+
+
+
+@endsection
 </body>
 </html>

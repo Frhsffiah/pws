@@ -7,9 +7,9 @@
 </head>
 <body>
 <div id="wrapper">
-        <x-platinumLayout/>
+        <x-mentorLayout/>
         <main id="main" class="main">
-            @yield('platinum')
+            @yield('mentor')
         </main>
     </div>
 </body>
