@@ -12,18 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('registrations', function (Blueprint $table) {
-            $table->id('RegID');
+            
+            $table->string('RegID')->primary();
             $table->string('R_Type');
             $table->string('R_Title');
             $table->string('R_FullName');
-            $table->string('R_IC');
+            $table->string('R_IC')->unique();
             $table->string('R_Gender');
             $table->string('R_Religion');
             $table->string('R_Race');
             $table->string('R_Citizenship');
             $table->string('R_Address');
             $table->string('R_PhoneNum');
-            $table->string('R_Email');
+            $table->string('R_Email')->unique();
             $table->string('R_FbName');
             $table->string('R_CurrentEduLvl');
             $table->string('R_EduField');

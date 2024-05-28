@@ -8,18 +8,18 @@ use App\Models\Registration;
 class RegisterController extends Controller
 {
 
-    public function index()
-    {
+
+    public function list(){ //list of registration
         $registers = Registration::all();
-        return view('registration.Staff.view_register_page', compact('registers'));
+        return view('registration.Mentor.view_register_page', compact('registers'));
     }
 
-    public function registerPage()
+    public function registerPage()  //interface make new registration
     {
         return view('registration.Staff.register_page'); // This should match the Blade template name
     }
 
-    public function store(Request $request)
+    public function store(Request $request)  //store data to database
 {
     $validatedData = $request->validate([
         'RegID' => 'required|string|max:255|unique:registrations,RegID',
@@ -49,12 +49,12 @@ class RegisterController extends Controller
     // Store the validated data in the database
     $registration = Registration::create($validatedData);
 
-    return redirect()->route('Register.show', $registration->id);
+    return redirect()->route('registers.show', $registration->RegID);
 }
 
-    public function show($id)
+    public function show($RegID) //specific view of selected RegID
 {
-    $data = Registration::findOrFail($id);
+    $registers = Registration::findOrFail($RegID);
     return view('registration.Staff.view_register_page', compact('registers'));
 }
 }

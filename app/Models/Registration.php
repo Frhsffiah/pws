@@ -9,6 +9,10 @@ class Registration extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'RegID';
+    public $incrementing = false;
+    protected $keyType = 'string';
+
     protected $fillable = [
         'RegID', 'R_Type', 'R_Title', 'R_FullName', 'R_IC', 'R_Gender', 
         'R_Religion', 'R_Race', 'R_Citizenship', 'R_Address', 'R_PhoneNum', 
