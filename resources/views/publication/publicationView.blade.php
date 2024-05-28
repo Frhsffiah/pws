@@ -1,18 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PublicationView</title>
-</head>
-<body>
-
-@extends('main.platinummain')
+@extends('components.platinumLayout')
 
 @section('platinum')
-
-
-
+<h1>My Publication</h1>
+    <ul class="public-list">
+        <li>publication 1</li>
+        <li>publication 2</li>
+        <li>publication 3</li>
+    </ul>
 @endsection
-</body>
-</html>

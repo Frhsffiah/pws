@@ -1,0 +1,36 @@
+/* css/styles.css */
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.sidebar {
+    position: fixed;
+    top: 60px; /* Adjust this based on the height of your navbar */
+    left: 0;
+    height: calc(100% - 60px); /* Adjust this based on the height of your navbar */
+    width: 260px;
+    overflow-y: auto;
+}
+
+.content {
+    margin-top: 60px; /* Adjust this based on the height of your navbar */
+    margin-left: 260px; /* Adjust this based on the width of your sidebar */
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80px;
+    }
+    .content {
+        margin-left: 80px;
+    }
+}

@@ -1,368 +1,452 @@
-
+<!DOCTYPE html>
+<!-- Coding by CodingNepal || www.codingnepalweb.com -->
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <title> e-Platinum World </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Boxicons CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <title>Side Navigation Bar in HTML CSS JavaScript</title>
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
    
-    <!-- Boxiocns CDN Link -->
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <style>
-        /* Google Fonts Import Link */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-body{
-  overflow: hidden;
-}
-.sidebar{
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 260px;
-  background: #11101d;
-  z-index: 100;
-  transition: all 0.5s ease;
-}
-.sidebar.close{
-  width: 78px;
-}
-.sidebar .logo-details{
-  height: 60px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
-.sidebar .logo-details i{
-  font-size: 30px;
-  color: #fff;
-  height: 50px;
-  min-width: 78px;
-  text-align: center;
-  line-height: 50px;
-}
-.sidebar .logo-details .logo_name{
-  font-size: 22px;
-  color: #fff;
-  font-weight: 600;
-  transition: 0.3s ease;
-  transition-delay: 0.1s;
-}
-.sidebar.close .logo-details .logo_name{
-  transition-delay: 0s;
-  opacity: 0;
-  pointer-events: none;
-}
-.sidebar .nav-links{
-  height: 100%;
-  padding: 30px 0 150px 0;
-  overflow: auto;
-}
-.sidebar.close .nav-links{
-  overflow: visible;
-}
-.sidebar .nav-links::-webkit-scrollbar{
-  display: none;
-}
-.sidebar .nav-links li{
-  position: relative;
-  list-style: none;
-  transition: all 0.4s ease;
-}
-.sidebar .nav-links li:hover{
-  background: #1d1b31;
-}
-.sidebar .nav-links li .iocn-link{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.sidebar.close .nav-links li .iocn-link{
-  display: block
-}
-.sidebar .nav-links li i{
-  height: 50px;
-  min-width: 78px;
-  text-align: center;
-  line-height: 50px;
-  color: #fff;
-  font-size: 20px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.sidebar .nav-links li.showMenu i.arrow{
-  transform: rotate(-180deg);
-}
-.sidebar.close .nav-links i.arrow{
-  display: none;
-}
-.sidebar .nav-links li a{
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-.sidebar .nav-links li a .link_name{
-  font-size: 18px;
-  font-weight: 400;
-  color: #fff;
-  transition: all 0.4s ease;
-}
-.sidebar.close .nav-links li a .link_name{
-  opacity: 0;
-  pointer-events: none;
-}
-.sidebar .nav-links li .sub-menu{
-  padding: 6px 6px 14px 80px;
-  margin-top: -10px;
-  background: #1d1b31;
-  display: none;
-}
-.sidebar .nav-links li.showMenu .sub-menu{
-  display: block;
-}
-.sidebar .nav-links li .sub-menu a{
-  color: #fff;
-  font-size: 15px;
-  padding: 5px 0;
-  white-space: nowrap;
-  opacity: 0.6;
-  transition: all 0.3s ease;
-}
-.sidebar .nav-links li .sub-menu a:hover{
-  opacity: 1;
-}
-.sidebar.close .nav-links li .sub-menu{
-  position: absolute;
-  left: 100%;
-  top: -10px;
-  margin-top: 0;
-  padding: 10px 20px;
-  border-radius: 0 6px 6px 0;
-  opacity: 0;
-  display: block;
-  pointer-events: none;
-  transition: 0s;
-}
-.sidebar.close .nav-links li:hover .sub-menu{
-  top: 0;
-  opacity: 1;
-  pointer-events: auto;
-  transition: all 0.4s ease;
-}
-.sidebar .nav-links li .sub-menu .link_name{
-  display: none;
-}
-.sidebar.close .nav-links li .sub-menu .link_name{
-  font-size: 18px;
-  opacity: 1;
-  display: block;
-}
-.sidebar .nav-links li .sub-menu.blank{
-  opacity: 1;
-  pointer-events: auto;
-  padding: 3px 20px 6px 16px;
-  opacity: 0;
-  pointer-events: none;
-}
-.sidebar .nav-links li:hover .sub-menu.blank{
-  top: 50%;
-  transform: translateY(-50%);
-}
-.sidebar .profile-details{
-  position: fixed;
-  bottom: 0;
-  width: 260px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #1d1b31;
-  padding: 12px 0;
-  transition: all 0.5s ease;
-}
-.sidebar.close .profile-details{
-  background: none;
-}
-.sidebar.close .profile-details{
-  width: 78px;
-}
-.sidebar .profile-details .profile-content{
-  display: flex;
-  align-items: center;
-}
-.sidebar .profile-details img{
-  height: 52px;
-  width: 52px;
-  object-fit: cover;
-  border-radius: 16px;
-  margin: 0 14px 0 12px;
-  background: #1d1b31;
-  transition: all 0.5s ease;
-}
-.sidebar.close .profile-details img{
-  padding: 10px;
-}
-.sidebar .profile-details .profile_name,
-.sidebar .profile-details .job{
-  color: #fff;
-  font-size: 18px;
-  font-weight: 500;
-  white-space: nowrap;
-}
-.sidebar.close .profile-details i,
-.sidebar.close .profile-details .profile_name,
-.sidebar.close .profile-details .job{
-  display: none;
-}
-.sidebar .profile-details .job{
-  font-size: 12px;
-}
-.home-section{
-  position: relative;
-  background: #E4E9F7;
-  height: 100vh;
-  left: 260px;
-  width: calc(100% - 260px);
-  transition: all 0.5s ease;
-  padding: 12px;
-}
-.sidebar.close ~ .home-section{
-  left: 78px;
-  width: calc(100% - 78px);
-}
-.home-content{
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.home-section .home-content .bx-menu,
-.home-section .home-content .text{
-  color: #11101d;
-  font-size: 35px;
-}
-.home-section .home-content .bx-menu{
-  cursor: pointer;
-  margin-right: 10px;
-}
-.home-section .home-content .text{
-  font-size: 26px;
-  font-weight: 600;
-}
+    <style>
+        /* Import Google font - Poppins */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+        :root {
+            --white-color: #fff;
+            --blue-color: #4070f4;
+            --grey-color: #707070;
+            --grey-color-light: #aaa;
+        }
+        body {
+            background-color: #e7f2fd;
+            transition: all 0.5s ease;
+        }
+        body.dark {
+            background-color: #333;
+        }
+        body.dark {
+            --white-color: #333;
+            --blue-color: #fff;
+            --grey-color: #f2f2f2;
+            --grey-color-light: #aaa;
+        }
 
-@media screen and (max-width: 400px){
-  .sidebar{
-    width: 240px;
-  }
-  .sidebar.close{
-    width: 78px;
-  }
-  .sidebar .profile-details{
-    width: 240px;
-  }
-  .sidebar.close .profile-details{
-    background: none;
-  }
-  .sidebar.close .profile-details{
-    width: 78px;
-  }
-  .home-section{
-    left: 240px;
-    width: calc(100% - 240px);
-  }
-  .sidebar.close ~ .home-section{
-    left: 78px;
-    width: calc(100% - 78px);
-  }
-}
-     </style>
-   </head>
-<body>
-  <div class="sidebar close">
-    <div class="logo-details">
-      <i class='bx bxl-c-plus-plus'></i>
-      <span class="logo_name">Platinum</span>
-    </div>
-    <ul class="nav-links">
-      <li>
-        <a href="#">
-          <i class='bx bx-grid-alt' ></i>
-          <span class="link_name">Dashboard</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Profile</a></li>
+        /* navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            left: 0;
+            background-color: var(--white-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 30px;
+            z-index: 1000;
+            box-shadow: 0 0 2px var(--grey-color-light);
+        }
+        .logo_item {
+            display: flex;
+            align-items: center;
+            column-gap: 10px;
+            font-size: 22px;
+            font-weight: 500;
+            color: var(--blue-color);
+        }
+        .navbar img {
+            width: 35px;
+            height: 35px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .search_bar {
+            height: 47px;
+            max-width: 430px;
+            width: 100%;
+        }
+        .search_bar input {
+            height: 100%;
+            width: 100%;
+            border-radius: 25px;
+            font-size: 18px;
+            outline: none;
+            background-color: var(--white-color);
+            color: var(--grey-color);
+            border: 1px solid var(--grey-color-light);
+            padding: 0 20px;
+        }
+        .navbar_content {
+            display: flex;
+            align-items: center;
+            column-gap: 25px;
+        }
+        .navbar_content i {
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--grey-color);
+        }
+
+        /* sidebar */
+        .sidebar {
+            background-color: var(--white-color);
+            width: 260px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            padding: 80px 20px;
+            z-index: 100;
+            overflow-y: scroll;
+            box-shadow: 0 0 1px var(--grey-color-light);
+            transition: all 0.5s ease;
+        }
+        .sidebar.close {
+            padding: 60px 0;
+            width: 80px;
+        }
+        .sidebar::-webkit-scrollbar {
+            display: none;
+        }
+        .menu_content {
+            position: relative;
+        }
+        .menu_title {
+            margin: 15px 0;
+            padding: 0 20px;
+            font-size: 18px;
+        }
+        .sidebar.close .menu_title {
+            padding: 6px 30px;
+        }
+        .menu_title::before {
+            color: var(--grey-color);
+            white-space: nowrap;
+        }
+        .menu_dahsboard::before {
+            content: "Dashboard";
+        }
+        .menu_editor::before {
+            content: "Editor";
+        }
+        .menu_setting::before {
+            content: "Setting";
+        }
+        .sidebar.close .menu_title::before {
+            content: "";
+            position: absolute;
+            height: 2px;
+            width: 18px;
+            border-radius: 12px;
+            background: var(--grey-color-light);
+        }
+        .menu_items {
+            padding: 0;
+            list-style: none;
+        }
+        .navlink_icon {
+            position: relative;
+            font-size: 22px;
+            min-width: 50px;
+            line-height: 40px;
+            display: inline-block;
+            text-align: center;
+            border-radius: 6px;
+        }
+        .navlink_icon::before {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: calc(100% + 100px);
+            left: -20px;
+        }
+        .navlink_icon:hover {
+            background: var(--blue-color);
+        }
+        .sidebar .nav_link {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 4px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--grey-color);
+            white-space: nowrap;
+        }
+        .sidebar.close .navlink {
+            display: none;
+        }
+        .nav_link:hover {
+            color: var(--white-color);
+            background: var(--blue-color);
+        }
+        .sidebar.close .nav_link:hover {
+            background: var(--white-color);
+        }
+        .submenu_item {
+            cursor: pointer;
+        }
+        .submenu {
+            display: none;
+        }
+        .submenu_item .arrow-left {
+            position: absolute;
+            right: 10px;
+            display: inline-block;
+            margin-right: auto;
+        }
+        .sidebar.close .submenu {
+            display: none;
+        }
+        .show_submenu ~ .submenu {
+            display: block;
+        }
+        .show_submenu .arrow-left {
+            transform: rotate(90deg);
+        }
+        .submenu .sublink {
+            padding: 15px 15px 15px 52px;
+        }
+        .bottom_content {
+            position: fixed;
+            bottom: 60px;
+            left: 0;
+            width: 260px;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+        .bottom {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            left: 0;
+            justify-content: space-around;
+            padding: 18px 0;
+            text-align: center;
+            width: 100%;
+            color: var(--grey-color);
+            border-top: 1px solid var(--grey-color-light);
+            background-color: var(--white-color);
+        }
+        .bottom i {
+            font-size: 20px;
+        }
+        .bottom span {
+            font-size: 18px;
+        }
+        .sidebar.close .bottom_content {
+            width: 50px;
+            left: 15px;
+        }
+        .sidebar.close .bottom span {
+            display: none;
+        }
+        .sidebar.hoverable .collapse_sidebar {
+            display: none;
+        }
+        #sidebarOpen {
+            display: none;
+        }
+        @media screen and (max-width: 768px) {
+            #sidebarOpen {
+                font-size: 25px;
+                display: block;
+                margin-right: 10px;
+                cursor: pointer;
+                color: var(--grey-color);
+            }
+            .sidebar.close {
+                left: -100%;
+            }
+            .search_bar {
+                display: none;
+            }
+            .sidebar.close .bottom_content {
+                left: -100%;
+            }
+        }
+
+        /* Main content styles */
+        .main-content {
+            margin-top: 80px; /* Height of the navbar */
+            margin-left: 280px; /* Width of the sidebar */
+            padding: 40px;
+            transition: all 0.5s ease;
+        }
+
+        /* Adjust main content when sidebar is closed */
+        .sidebar.close ~ .main-content {
+            margin-left: 80px; /* Adjust to the width of the closed sidebar */
+        }
+        @media screen and (max-width: 768px) {
+            .main-content {
+                margin-left: 0; /* Remove margin for small screens */
+                margin-top: 60px; /* Adjust for smaller navbar height */
+            }
+            .sidebar.close ~ .main-content {
+                margin-left: 0; /* No additional margin on small screens */
+            }
+        }
+
+    </style>
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="navbar">
+      <div class="logo_item">
+        <i class="bx bx-menu" id="sidebarOpen"></i>
+        <img src="{{ asset('logo.png') }}" alt="">
+        e-Platinum World
+      </div>
+
+      <div class="search_bar">
+        <input type="text" placeholder="Search" />
+      </div>
+
+      <div class="navbar_content">
+        <i class="bi bi-grid"></i>
+        <i class='bx bx-sun' id="darkLight"></i>
+        <i class='bx bx-bell' ></i>
+        <img src="{{ asset('logo.png') }}" alt="" class="profile" />
+      </div>
+    </nav>
+
+    <!-- sidebar -->
+    <nav class="sidebar">
+      <div class="menu_content">
+        <h1>Platinum</h1>
+        <ul class="menu_items">
+        <div class="menu_title menu_dashboard"></div>
+          <!-- duplicate or remove this li tag if you want to add or remove navlink with submenu -->
+          <!-- start -->
+          <li class="item">
+            <div href="#" class="nav_link submenu_item">
+              <span class="navlink_icon">
+              <i class='bx bxs-user'></i>
+              </span>
+              <span class="navlink">Profile</span>
+              <i class="bx bx-chevron-right arrow-left"></i>
+            </div>
+
+            <ul class="menu_items submenu">
+              <a href="#" class="nav_link sublink">My Profile</a>
+              <a href="#" class="nav_link sublink">Platinum Profile</a>
+            </ul>
+          </li>
+          <!-- end -->
+
+          <!-- duplicate this li tag if you want to add or remove  navlink with submenu -->
+          <!-- start -->
+          <li class="item">
+            <div href="#" class="nav_link submenu_item">
+              <span class="navlink_icon">
+              <i class='bx bx-book-reader'></i>
+              </span>
+              <span class="navlink">Expert</span>
+              <i class="bx bx-chevron-right arrow-left"></i>
+            </div>
+
+            <ul class="menu_items submenu">
+              <a href="#" class="nav_link sublink">My Expert</a>
+              <a href="#" class="nav_link sublink">Expert List</a>
+            </ul>
+          </li>
+          <!-- end -->
         </ul>
-      </li>
-      <li>
-        <div class="iocn-link">
-          <a href="#">
-            <i class='bx bx-collection' ></i>
-            <span class="link_name">Profile</span>
-          </a>
-          <i class='bx bxs-chevron-down arrow' ></i>
+
+        <ul class="menu_items">
+          <!--<div class="menu_title menu_editor"></div>-->
+          <!-- duplicate these li tag if you want to add or remove navlink only -->
+          <!-- Start -->
+          <li class="item">
+            <a href="#" class="nav_link">
+              <span class="navlink_icon">
+              <i class='bx bx-book'></i>
+              </span>
+              <span class="navlink">Publications</span>
+            </a>
+          </li>
+          <!-- End -->
+        </ul>
+
+        <!-- Sidebar Open / Close -->
+        <div class="bottom_content">
+          <div class="bottom expand_sidebar">
+            <span> Expand</span>
+            <i class='bx bx-log-in' ></i>
+          </div>
+          <div class="bottom collapse_sidebar">
+            <span> logout</span>
+            <i class='bx bx-log-out'></i>
+          </div>
         </div>
-        <ul class="sub-menu">
-          <li><a class="link_name" href="#">Profile</a></li>
-          <li><a href="#">My Profile</a></li>
-          <li><a href="#">Platinum Profile</a></li>
-        </ul>
-      </li>
-      <li>
-        <div class="iocn-link">
-          <a href="#">
-            <i class='bx bx-book-alt' ></i>
-            <span class="link_name">Expert</span>
-          </a>
-          <i class='bx bxs-chevron-down arrow' ></i>
-        </div>
-        <ul class="sub-menu">
-          <li><a class="link_name" href="#">Expert</a></li>
-          <li><a href="#">My Expert</a></li>
-          <li><a href="#">Expert List</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-pie-chart-alt-2' ></i>
-          <span class="link_name">Publications</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Publications</a></li>
-        </ul>
-      </li>
-     
-      <li>
-    <div class="profile-details">
-      <i class='bx bx-log-out' ></i>
+      </div>
+    </nav>
+    <div class="main-content">
+         @yield('platinum')
     </div>
-  </li>
-</ul>
-  </div>
-  <section class="home-section">
-    <div class="home-content">
-      <i class='bx bx-menu' ></i>
-      <span class="text">e-Platinum World</span>
-    </div>
-  </section>
+    <!-- JavaScript -->
+    <script>
+      const body = document.querySelector("body");
+const darkLight = document.querySelector("#darkLight");
+const sidebar = document.querySelector(".sidebar");
+const submenuItems = document.querySelectorAll(".submenu_item");
+const sidebarOpen = document.querySelector("#sidebarOpen");
+const sidebarClose = document.querySelector(".collapse_sidebar");
+const sidebarExpand = document.querySelector(".expand_sidebar");
+sidebarOpen.addEventListener("click", () => sidebar.classList.toggle("close"));
 
-  <script>
-    let arrow = document.querySelectorAll(".arrow");
-for (var i = 0; i < arrow.length; i++) {
-  arrow[i].addEventListener("click", (e)=>{
- let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
- arrowParent.classList.toggle("showMenu");
-  });
-}
-
-let sidebar = document.querySelector(".sidebar");
-let sidebarBtn = document.querySelector(".bx-menu");
-console.log(sidebarBtn);
-sidebarBtn.addEventListener("click", ()=>{
-  sidebar.classList.toggle("close");
+sidebarClose.addEventListener("click", () => {
+  sidebar.classList.add("close", "hoverable");
+});
+sidebarExpand.addEventListener("click", () => {
+  sidebar.classList.remove("close", "hoverable");
 });
 
-  </script>
+sidebar.addEventListener("mouseenter", () => {
+  if (sidebar.classList.contains("hoverable")) {
+    sidebar.classList.remove("close");
+  }
+});
+sidebar.addEventListener("mouseleave", () => {
+  if (sidebar.classList.contains("hoverable")) {
+    sidebar.classList.add("close");
+  }
+});
 
-</body>
+darkLight.addEventListener("click", () => {
+  body.classList.toggle("dark");
+  if (body.classList.contains("dark")) {
+    document.setI;
+    darkLight.classList.replace("bx-sun", "bx-moon");
+  } else {
+    darkLight.classList.replace("bx-moon", "bx-sun");
+  }
+});
+
+submenuItems.forEach((item, index) => {
+  item.addEventListener("click", () => {
+    item.classList.toggle("show_submenu");
+    submenuItems.forEach((item2, index2) => {
+      if (index !== index2) {
+        item2.classList.remove("show_submenu");
+      }
+    });
+  });
+});
+
+if (window.innerWidth < 768) {
+  sidebar.classList.add("close");
+} else {
+  sidebar.classList.remove("close");
+}
+
+    </script>
+  </body>
+</html>
