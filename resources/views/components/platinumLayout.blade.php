@@ -301,7 +301,8 @@
     <nav class="navbar">
       <div class="logo_item">
         <i class="bx bx-menu" id="sidebarOpen"></i>
-        </i>e-Platinum World
+        <img src="{{ asset('logo.png') }}" alt="">
+        e-Platinum World
       </div>
 
       <div class="search_bar">
@@ -312,7 +313,7 @@
         <i class="bi bi-grid"></i>
         <i class='bx bx-sun' id="darkLight"></i>
         <i class='bx bx-bell' ></i>
-        <img src="images/profile.jpg" alt="" class="profile" />
+        <img src="{{ asset('logo.png') }}" alt="" class="profile" />
       </div>
     </nav>
 
@@ -381,7 +382,7 @@
             <i class='bx bx-log-in' ></i>
           </div>
           <div class="bottom collapse_sidebar">
-            <span> Collapse</span>
+            <span> logout</span>
             <i class='bx bx-log-out'></i>
           </div>
         </div>

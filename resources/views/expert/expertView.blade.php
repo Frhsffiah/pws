@@ -1,7 +1,8 @@
+
 @extends('components.platinumLayout')
 
 @section('platinum')
-    <!-- Expert List Section -->
+  <!-- Expert List Section -->
   <section class="expert-list">
     <h2>Expert List</h2>
     <div class="expert-list-container">

@@ -301,6 +301,7 @@
     <nav class="navbar">
       <div class="logo_item">
         <i class="bx bx-menu" id="sidebarOpen"></i>
+        <img src="{{ asset('logo.png') }}" alt="">
        </i>e-Platinum World
       </div>
 
