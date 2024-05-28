@@ -10,7 +10,7 @@
 <body>
     <div class="main">
     
-        <h3>Login</h3>
+        <h3>LOGIN</h3>
         <form action="">
             <label for="username">
                   Username:
@@ -41,7 +41,7 @@
             </div>
         </form>
         <p>Forgot Password? 
-              <a href="#" style="text-decoration: none;"> Click here
+              <a href="{{ route('forgotPassword') }}" style="text-decoration: none;"> Click here
             </a>
         </p>
     </div>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <body>
     <div class="container">
         <h1>Registration</h1>
-        <form id="registerForm" action="{{ route('Register.store') }}" method="POST">
+        <form id="registerForm" action="{{ route('registers.store') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="RegID">RegID</label>
@@ -179,3 +180,5 @@
     </script> -->
 </body>
 </html>
+
+

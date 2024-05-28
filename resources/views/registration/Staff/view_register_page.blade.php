@@ -4,6 +4,48 @@
 <head>
     <title>Registration Success</title>
     <link href="{{ asset('Module_1/register.css') }}" rel="stylesheet">
+
+    <style>
+            .container{
+                padding: 20px;
+                margin: 0 auto;
+                max-width: 800px;
+            }
+
+            .container h1{
+               margin-bottom: 20px;
+            }
+
+            table{
+               width: 100%;
+               border-collapse: collapse;
+               margin-top: 20px;
+            }
+
+            table, th, td{
+                border: 1px solid #ddd;
+            }
+
+            th, td{
+                padding: 12px;
+                text-align: left;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+             tr:hover {
+                 background-color: #f1f1f1;
+            }
+
+             
+
+    </style>
 </head>
 <body>
     <div class="container">

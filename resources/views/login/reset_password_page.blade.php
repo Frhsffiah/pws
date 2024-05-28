@@ -55,7 +55,7 @@
 
 <div class="container">
     <h2>Reset Password</h2>
-    <form id="resetPasswordForm" action="login_page.blade.php" onsubmit="return validatePasswords()">
+    <form id="resetPasswordForm" action="{{ route('login') }}" onsubmit="return validatePasswords()">
         <div class="form-group">
             <label for="newPassword">Enter New Password</label>
             <input type="password" id="newPassword" name="newPassword" required>

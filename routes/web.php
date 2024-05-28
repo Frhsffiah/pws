@@ -24,15 +24,22 @@ Route::get('/', function () {
 });
 
 //Module 1 (Login)
-Route::get('/Login', [LoginController::class, 'LoginPage']);
-Route::get('/ForgotPassword', [LoginController::class, 'ForgotPasswordPage']);
-Route::get('/ResetPassword', [ResetPasswordController::class, 'ResetPasswordPage']);
+Route::get('/Login', [LoginController::class, 'LoginPage'])->name('login');
+Route::get('/ForgotPassword', [LoginController::class, 'ForgotPasswordPage'])->name('forgotPassword');
+Route::get('/ResetPassword', [ResetPasswordController::class, 'ResetPasswordPage'])->name('resetPassword');
 
 //Module 1 (Register)
-Route::get('/Register-page', [RegisterController::class, 'index'])->name('Register.index');
-Route::get('/Register', [RegisterController::class, 'registerPage'])->name('Register.RegisterPage');
-Route::post('/Register-page', [RegisterController::class, 'store'])->name('Register.store');
-Route::get('/Register-page/{id}', [RegisterController::class, 'show'])->name('Register.show');
+// Route::get('/Register-list', [RegisterController::class, 'list'])->name('Register.list');
+// Route::get('/Register', [RegisterController::class, 'registerPage'])->name('Register.RegisterPage');
+// Route::post('/Register-page', [RegisterController::class, 'store'])->name('Register.store');
+// Route::get('/Register-page/{RegID}', [RegisterController::class, 'show'])->name('Register.show');
+
+//Module 1 (Register will be update)
+
+Route::get('/Register-list', [RegisterController::class, 'list'])->name('registers.index');
+Route::get('/Register-page/create', [RegisterController::class, 'registerPage'])->name('registers.create');
+Route::post('/Register-list', [RegisterController::class, 'store'])->name('registers.store');
+Route::get('/Register-page/{id}', [RegisterController::class, 'show'])->name('registers.show');
 
 //Module 1 (UserProfile)
 Route::get('/UserProfile', [UserProfileController::class, 'UserProfilePage']);

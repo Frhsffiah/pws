@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Forgot Password</title>
-    <link rel="stylesheet" type="text/css" href="../style/forgot.css" />
+    <link href="{{asset('Module_1/forgot.css')}}" rel="stylesheet">
 
 </head>	
 <body>
@@ -40,7 +40,7 @@ document.querySelector('.form-wrap').addEventListener('submit', function(event) 
 
 document.querySelector('.close-btn').addEventListener('click', function() {
     document.querySelector('.popup-container').style.display = 'none';
-    window.location.href = 'reset_password_page.blade.php';
+    window.location.href = "{{ route('resetPassword') }}";
 });
 </script>
 
