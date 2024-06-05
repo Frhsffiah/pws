@@ -12,12 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('expert_papers', function (Blueprint $table) {
-            $table->string('ePaperID')->primary();
+            $table->bigIncrements('ePaperID');
             $table->string('ePaperTitle');
             $table->string('eYear');
             $table->string('ePublicationType');
-            $table->string('expertID')->references('expertID')->on('experts');
-            $table->string('eResearchID')->references('eResearchID')->on('expert_researches');
+            $table->unsignedBigInteger('expertID');
+            $table->unsignedBigInteger('eResearchID');
+            $table->foreign('expertID')->references('expertID')->on('experts')->onDelete('cascade');
+            $table->foreign('eResearchID')->references('eResearchID')->on('expert_researches')->onDelete('cascade');
 
         });
     }

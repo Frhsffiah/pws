@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('expert_researches', function (Blueprint $table) {
-            $table->string('eResearchID')->primary();
+            $table->bigIncrements('eResearchID');
             $table->string('eResearchTitle');
             $table->string('eDomain');
-            $table->string('expertID')->references('expertID')->on('experts');
+            $table->unsignedBigInteger('expertID');
+            $table->foreign('expertID')->references('expertID')->on('experts')->onDelete('cascade');
         });
     }
 
