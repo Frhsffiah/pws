@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <title>Side Navigation Bar in HTML CSS JavaScript</title>
+    <title>e-PWS</title>
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
    
     <style>
