@@ -52,3 +52,5 @@ Route::get('/Expert', [ExpertController::class, 'expertView'])->name('expertView
 
 //Module 3 (Publication)
 Route::get('/Publication', [PublicationController::class, 'publicationView']);
+Route::get('/listpublication', [PublicationController::class, 'showList'])->name('listpublication');
+
