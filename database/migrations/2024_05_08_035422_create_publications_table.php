@@ -18,8 +18,9 @@ return new class extends Migration
             $table->date('Pub_date');
             $table->string('Pub_type');
             $table->integer('Pub_DOI');
-            $table->string('Platinum_ID')->references('Platinum_ID')->on('platinums');
-            $table->string('Mentor_ID')->references('Mentor_ID')->on('mentors');
+            $table->string('Pub_File');
+            $table->string('Platinum_ID')->references('Platinum_ID')->on('platinums')->nullable();
+            $table->string('Mentor_ID')->references('Mentor_ID')->on('mentors')->nullable();
 
 
         });

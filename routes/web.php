@@ -49,6 +49,8 @@ Route::get('/Expert', [ExpertController::class, 'expertView']);
 
 
 //Module 3 (Publication)
-Route::get('/Publication', [PublicationController::class, 'publicationView']);
-Route::get('/listpublication', [PublicationController::class, 'showList'])->name('listpublication');
+Route::get('/Publication', [PublicationController::class, 'landingpublication'])->name('Publication.landingpublication');
+Route::get('/listpublication', [PublicationController::class, 'showList'])->name('Publication.showList');
+Route::get('/uploadpublication', [PublicationController::class, 'showUpload'])->name('Publication.showUpload');
+Route::post('/uploadpublication', [PublicationController::class, 'upload'])->name('Publication.store');
 

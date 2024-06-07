@@ -53,10 +53,10 @@
         <button class="publication-button" onclick="redirectTo('search')">
             <i class='bx bx-search'></i> Search Publications
         </button>
-        <button class="publication-button" onclick="window.location.href='{{ route('listpublication') }}'">
+        <button class="publication-button" onclick="window.location.href='{{ url('listpublication') }}'">
             <i class='bx bx-list-ul'></i> List Publications
         </button>
-        <button class="publication-button" onclick="redirectTo('upload')">
+        <button class="publication-button" onclick="window.location.href='{{ url('uploadpublication') }}'">
             <i class='bx bx-upload'></i> Upload Publications
         </button>
         <button class="publication-button" onclick="redirectTo('delete')">
@@ -65,24 +65,4 @@
     </div>
 </div>
 
-<script>
-    function redirectTo(action) {
-        switch(action) {
-            case 'search':
-                // Add your search redirection logic here
-                break;
-            case 'list':
-                window.location.href = "{{ route('listpublications') }}";
-                break;
-            case 'upload':
-                // Add your upload redirection logic here
-                break;
-            case 'delete':
-                // Add your delete redirection logic here
-                break;
-            default:
-                break;
-        }
-    }
-</script>
 @endsection
