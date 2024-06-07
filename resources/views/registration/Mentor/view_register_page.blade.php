@@ -62,5 +62,5 @@
             @endforeach
         </tbody>
     </table>
-    <a href="{{ route('registers.create') }}" class="btn btn-blue">New Registration</a>
+    <a href="{{ route('registerPage') }}" class="btn btn-blue">New Registration</a>
 </div>

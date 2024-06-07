@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('mentors', function (Blueprint $table) {
             $table->string('Mentor_ID')->primary();
-            $table->string('MName');
+            $table->string('MFullName');
+            $table->string('MICNo');
+            $table->string('MGender');
             $table->string('MNoPhone');
             $table->string('MAddress');
-            $table->string('MGender');
+            $table->string('MEmail');
             $table->string('UserID')->references('UserID')->on('userprofiles');
         });
     }

@@ -1,4 +1,7 @@
 <!-- resources/views/registration/Staff/view_register_page.blade.php -->
+@extends('components.staffLayout')
+
+@section('staff')
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,6 +51,7 @@
     </style>
 </head>
 <body>
+
     <div class="container">
         <h1>Registration Successful</h1>
         <table>
@@ -138,4 +142,6 @@
         </table>
     </div>
 </body>
+
 </html>
+@endsection
