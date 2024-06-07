@@ -1,6 +1,6 @@
-@extends('components.staffLayout')
+@extends('components.mentorLayout')
 
-@section('staff')
+@section('mentor')
 
 <style>
     .container {
@@ -155,7 +155,7 @@
             <th>Batch</th>
             <td>{{ $registers->R_Batch }}</td>
         </tr>
-      
+        <a href="{{ route('registers.show2', $registers->RegID) }}" class="view-btn">View</a>
     </table>
 </div>
 @endsection

@@ -24,28 +24,35 @@ Route::get('/', function () {
 });
 
 //Module 1 (Login)
-Route::get('/Login', [LoginController::class, 'LoginPage'])->name('login');
+Route::get('/Login', [LoginController::class, 'LoginPage'])->name('LoginPage');
 Route::get('/ForgotPassword', [LoginController::class, 'ForgotPasswordPage'])->name('forgotPassword');
 Route::get('/ResetPassword', [ResetPasswordController::class, 'ResetPasswordPage'])->name('resetPassword');
 
-//Module 1 (Register)
-// Route::get('/Register-list', [RegisterController::class, 'list'])->name('Register.list');
-// Route::get('/Register', [RegisterController::class, 'registerPage'])->name('Register.RegisterPage');
-// Route::post('/Register-page', [RegisterController::class, 'store'])->name('Register.store');
-// Route::get('/Register-page/{RegID}', [RegisterController::class, 'show'])->name('Register.show');
-
 //Module 1 (Register will be update)
+Route::get('/Register-list', [RegisterController::class, 'list'])->name('registers.list'); //mentor: list of register
+Route::get('/Registers-page/{RegID}', [RegisterController::class, 'show2'])->name('registers.show2');
 
-Route::get('/Register-list', [RegisterController::class, 'list'])->name('registers.index');
-Route::get('/Register-page/create', [RegisterController::class, 'registerPage'])->name('registers.create');
-Route::post('/Register-list', [RegisterController::class, 'store'])->name('registers.store');
-Route::get('/Register-page/{id}', [RegisterController::class, 'show'])->name('registers.show');
+Route::get('/Register-page/create', [RegisterController::class, 'create'])->name('registers.create');
+Route::post('/Register-page/create', [RegisterController::class, 'store'])->name('registers.store');
+Route::get('/listRegistration', [RegisterController::class, 'index'])->name('registers.index'); //staff: list of register
+Route::get('/Register-page/{RegID}', [RegisterController::class, 'show'])->name('registers.show');
+
+Route::post('/Login', [LoginController::class, 'LoginPost'])->name('LoginPost');
+Route::get('/Login', [LoginController::class, 'loginPage'])->name('loginPage');
+Route::get('/PlatinumPage', [LoginController::class, 'platinumPage'])->name('PlatinumPage');
+Route::get('/StaffPage', [LoginController::class, 'staffPage'])->name('StaffPage');
+Route::get('/MentorPage', [LoginController::class, 'mentorPage'])->name('mentorPage');
+Route::get('/userForm', [LoginController::class, 'userForm'])->name('userForm');
+Route::post('/userRegister', [LoginController::class, 'userPost'])->name('userPost');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 //Module 1 (UserProfile)
-Route::get('/UserProfile', [UserProfileController::class, 'UserProfilePage']);
+Route::get('/mentor/profile', [UserProfileController::class, 'viewProfile'])->name('viewMentorProfile');
+Route::get('/mentor/profile/edit', [UserProfileController::class, 'editProfile'])->name('editMentorProfile');
+Route::post('/mentor/profile/update', [UserProfileController::class, 'updateProfile'])->name('updateMentorProfile');
 
 //Module 2 (Expert)
-Route::get('/Expert', [ExpertController::class, 'expertView']);
+Route::get('/Expert', [ExpertController::class, 'expertView'])->name('expertView');
 
 
 //Module 3 (Publication)

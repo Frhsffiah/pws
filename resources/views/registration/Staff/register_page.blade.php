@@ -1,9 +1,12 @@
+@extends('components.staffLayout')
 
+@section('staff')
 <!DOCTYPE html>
 <html>
 <head>
     <title>Register Page</title>
-    <link href="{{asset('Module_1/register.css')}}" rel="stylesheet">
+    <link href="{{ asset('Module_1/register.css') }}" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
     <div class="container">
@@ -14,7 +17,6 @@
                 <label for="RegID">RegID</label>
                 <input type="text" id="RegID" name="RegID" required>
             </div>
-            
             <div class="form-group">
                 <label for="R_Type">R_Type</label>
                 <select id="R_Type" name="R_Type" required>
@@ -25,22 +27,18 @@
                     <option value="ala_carte">Ala Carte</option>
                 </select>
             </div>
-
             <div class="form-group">
                 <label for="R_Title">R_Title</label>
                 <input type="text" id="R_Title" name="R_Title" required>
             </div>
-
             <div class="form-group">
                 <label for="R_FullName">R_FullName</label>
                 <input type="text" id="R_FullName" name="R_FullName" required>
             </div>
-
             <div class="form-group">
                 <label for="R_IC">R_IC</label>
                 <input type="text" id="R_IC" name="R_IC" required>
             </div>
-
             <div class="form-group">
                 <label for="R_Gender">R_Gender</label>
                 <select id="R_Gender" name="R_Gender" required>
@@ -48,7 +46,6 @@
                     <option value="male">Male</option>
                 </select>
             </div>
-
             <div class="form-group">
                 <label for="R_Religion">R_Religion</label>
                 <select id="R_Religion" name="R_Religion" required>
@@ -58,7 +55,6 @@
                     <option value="kristian">Kristian</option>
                 </select>
             </div>
-
             <div class="form-group">
                 <label for="R_Race">R_Race</label>
                 <select id="R_Race" name="R_Race" required>
@@ -67,7 +63,6 @@
                     <option value="india">India</option>
                 </select>
             </div>
-
             <div class="form-group">
                 <label for="R_Citizenship">R_Citizenship</label>
                 <select id="R_Citizenship" name="R_Citizenship" required>
@@ -75,77 +70,71 @@
                     <option value="bukan_warganegara">Bukan Warganegara</option>
                 </select>
             </div>
-
             <div class="form-group">
                 <label for="R_Address">R_Address</label>
                 <input type="text" id="R_Address" name="R_Address" required>
             </div>
-
             <div class="form-group">
                 <label for="R_PhoneNum">R_PhoneNum</label>
                 <input type="text" id="R_PhoneNum" name="R_PhoneNum" required>
             </div>
-
             <div class="form-group">
                 <label for="R_Email">R_Email</label>
                 <input type="email" id="R_Email" name="R_Email" required>
             </div>
-
             <div class="form-group">
                 <label for="R_FbName">R_FbName</label>
                 <input type="text" id="R_FbName" name="R_FbName" required>
             </div>
-
             <div class="form-group">
                 <label for="R_CurrentEduLvl">R_CurrentEduLvl</label>
                 <input type="text" id="R_CurrentEduLvl" name="R_CurrentEduLvl" required>
             </div>
-
             <div class="form-group">
                 <label for="R_EduField">R_EduField</label>
                 <input type="text" id="R_EduField" name="R_EduField" required>
             </div>
-
             <div class="form-group">
                 <label for="R_EduInstitute">R_EduInstitute</label>
                 <input type="text" id="R_EduInstitute" name="R_EduInstitute" required>
             </div>
-
             <div class="form-group">
                 <label for="R_Occupation">R_Occupation</label>
                 <input type="text" id="R_Occupation" name="R_Occupation" required>
             </div>
-
             <div class="form-group">
                 <label for="R_Sponsorship">R_Sponsorship</label>
                 <input type="text" id="R_Sponsorship" name="R_Sponsorship" required>
             </div>
-
             <div class="form-group">
                 <label for="R_Program">R_Program</label>
                 <input type="text" id="R_Program" name="R_Program" required>
             </div>
-
             <div class="form-group">
                 <label for="R_Batch">R_Batch</label>
                 <input type="text" id="R_Batch" name="R_Batch" required>
             </div>
-
-            <button type="submit" class="btn btn-blue" onclick="return confirm ('Are you sure you want to register?')">Register</button>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="text" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-blue" onclick="return confirm('Are you sure you want to register?')">Register</button>
         </form>
-    <!-- </div>
-         <div id="popup" class="popup">
-            <div class="popup-content">
+    </div>
+
+    <div id="popup" class="popup" style="display:none;">
+        <div class="popup-content">
             <span class="close-btn">&times;</span>
             <p>Registration success!</p>
-         </div>
-    </div> -->
-    <!-- <script>
+        </div>
+    </div>
+
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             const registerForm = document.getElementById('registerForm');
             const popup = document.getElementById('popup');
             const closeBtn = document.querySelector('.close-btn');
-            
+
             registerForm.addEventListener('submit', function(event) {
                 event.preventDefault(); // Prevent form submission
 
@@ -177,8 +166,7 @@
                 popup.style.display = 'none';
             });
         });
-    </script> -->
+    </script>
 </body>
 </html>
-
-
+@endsection

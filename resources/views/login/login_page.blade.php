@@ -4,45 +4,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Login Form</title>
-    <link href="{{asset('Module_1/login.css')}}" rel="stylesheet">
+    <link href="{{ asset('Module_1/login.css') }}" rel="stylesheet">
 </head>
 
 <body>
     <div class="main">
-    
         <h3>LOGIN</h3>
-        <form action="">
-            <label for="username">
-                  Username:
+        <form action="{{ route('LoginPost') }}" method="POST">
+            @csrf
 
-              </label>
-            <input type="text" id="username" name="username" placeholder="Enter your Username" required>
+            <!-- Display Success Message -->
+        @if (session('success'))
+            <div class="success-message">
+                {{ session('success') }}
+            </div>
+        @endif
 
-            <label for="password">
-                  Password:
-              </label>
+            @if ($errors->any())
+                <div class="error-message">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your Email" required>
+
+            <label for="password">Password:</label>
             <input type="password" id="password" name="password" placeholder="Enter your Password" required>
 
-            <label for="user">
-                Type of User:
-            </label>
+            <label for="user">Type of User:</label>
             <select id="user" name="user" required>
                 <option value="">Choose a user</option>
                 <option value="staff">STAFF</option>
-                <option value="student">PLATINUM</option>
-                <option value="admin">MENTOR</option>
+                <option value="platinum">PLATINUM</option>
+                <option value="mentor">MENTOR</option>
             </select>
 
             <div class="wrap">
-                <button type="submit"
-                        onclick="solve()">
-                    LOGIN
-                </button>
+                <button type="submit">LOGIN</button>
             </div>
         </form>
         <p>Forgot Password? 
-              <a href="{{ route('forgotPassword') }}" style="text-decoration: none;"> Click here
-            </a>
+              <a href="{{ route('forgotPassword') }}" style="text-decoration: none;"> Click here</a>
         </p>
     </div>
 

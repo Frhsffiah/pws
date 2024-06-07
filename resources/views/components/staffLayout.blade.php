@@ -294,6 +294,35 @@
             }
         }
 
+        .logout-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 50px;
+            font-size: 18px;
+            color: var(--grey-color);
+            border: 1px solid var(--grey-color-light);
+            background-color: var(--white-color);
+            text-align: center;
+            border-radius: 8px;
+            margin: 10px 20px;
+            text-decoration: none;
+            transition: background 0.3s, color 0.3s;
+            top: 500px;
+            position:absolute;
+        }
+        .logout-button:hover {
+            color: var(--white-color);
+            background-color: var(--blue-color);
+        }
+        .sidebar.close .logout-button span {
+            display: none;
+        }
+        .sidebar.close .logout-button {
+            justify-content: center;
+            padding: 10px;
+        }
+
     </style>
   </head>
   <body>
@@ -356,7 +385,8 @@
             <ul class="menu_items submenu">
               <a href="#" class="nav_link sublink">Platinum Profile</a>
               <a href="#" class="nav_link sublink">Platinum Report</a>
-              <a href="#" class="nav_link sublink">Registration</a>
+              <a href="{{ route('registers.create') }}" class="nav_link sublink">Registration</a>
+              <a href="{{ route('registers.index') }}" class="nav_link sublink">List Registration</a>
             </ul>
           </li>
           <!-- end -->
@@ -378,20 +408,26 @@
         </ul>
 
         <!-- Sidebar Open / Close -->
-        <div class="bottom_content">
-          <div class="bottom expand_sidebar">
-            <span> Expand</span>
-            <i class='bx bx-log-in' ></i>
-          </div>
-          <div class="bottom collapse_sidebar">
-            <span> Collapse</span>
-            <i class='bx bx-log-out'></i>
-          </div>
+        <div class="sidebar-bottom-container">
+      <a href="{{ route('logout') }}" class="logout-button">
+        <i class="lni lni-exit"></i>
+        <span>Logout</span>
+      </a>
+      <div class="bottom_content">
+        <div class="bottom expand_sidebar">
+          <span> Expand</span>
+          <i class='bx bx-log-in' ></i>
+        </div>
+        <div class="bottom collapse_sidebar">
+          <span> Collapse</span>
+          <i class='bx bx-log-out'></i>
         </div>
       </div>
-    </nav>
+    </div>
+  </div>
+</nav>
     <div class="main-content">
-         @yield('staff')
+    @yield('staff')
     </div>
     <!-- JavaScript -->
     <script>

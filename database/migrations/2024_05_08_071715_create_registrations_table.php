@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string('R_Sponsorship');
             $table->string('R_Program');
             $table->string('R_Batch');
+            $table->string('password');
             
             $table->string('Staff_ID')->default('S1212')->change();  //->references('Staff_ID')->on('staff');
             $table->string('Platinum_ID')->default('P1212')->change();  //->references('Platinum_ID')->on('platinums');

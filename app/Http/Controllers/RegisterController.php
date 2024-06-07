@@ -4,17 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Registration;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
+    public function index(){ //list of registration for staff
+        $registers = Registration::all();
+        return view('registration.Staff.list_register_page', compact('registers'));
+    }
 
 
-    public function list(){ //list of registration
+    public function list(){ //list of registration for mentor
         $registers = Registration::all();
         return view('registration.Mentor.view_register_page', compact('registers'));
     }
-
-    public function registerPage()  //interface make new registration
+   
+    public function create()  //interface make new registration
     {
         return view('registration.Staff.register_page'); // This should match the Blade template name
     }
@@ -42,19 +47,52 @@ class RegisterController extends Controller
         'R_Sponsorship' => 'required|string|max:255',
         'R_Program' => 'required|string|max:255',
         'R_Batch' => 'required|string|max:255',
+        'password' => 'required'
         // 'Staff_ID' => 'required|exists:staff,id',
         // 'Platinum_ID' => 'required|exists:platinums,id',
     ]);
 
+    $data = [
+        'RegID' => $request->RegID,
+        'R_Type' => $request->R_Type,
+        'R_Title' => $request->R_Title,
+        'R_FullName' => $request->R_FullName,
+        'R_IC' => $request->R_IC,
+        'R_Gender' => $request->R_Gender,
+        'R_Religion' => $request->R_Religion,
+        'R_Race' => $request->R_Race,
+        'R_Citizenship' => $request->R_Citizenship,
+        'R_Address' => $request->R_Address,
+        'R_PhoneNum' => $request->R_PhoneNum,
+        'R_Email' => $request->R_Email,
+        'R_FbName' => $request->R_FbName,
+        'R_CurrentEduLvl' => $request->R_CurrentEduLvl,
+        'R_EduField' => $request->R_EduField,
+        'R_EduInstitute' => $request->R_EduInstitute,
+        'R_Occupation' => $request->R_Occupation,
+        'R_Sponsorship' => $request->R_Sponsorship,
+        'R_Program' => $request->R_Program,
+        'R_Batch' => $request->R_Batch,
+        'password' => $request->password
+
+    ];
+    $validatedData['password'] = Hash::make($request->password);
+
     // Store the validated data in the database
     $registration = Registration::create($validatedData);
 
-    return redirect()->route('registers.show', $registration->RegID);
+    return redirect()->route('registers.index', $registration->RegID);
 }
 
     public function show($RegID) //specific view of selected RegID
 {
     $registers = Registration::findOrFail($RegID);
     return view('registration.Staff.view_register_page', compact('registers'));
+}
+
+public function show2($RegID) //specific view of selected RegID
+{
+    $registers = Registration::findOrFail($RegID);
+    return view('registration.Mentor.view2_register_page', compact('registers'));
 }
 }

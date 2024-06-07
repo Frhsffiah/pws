@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('staff', function (Blueprint $table) {
             $table->string('Staff_ID')->primary();
-            $table->string('SName');
+            $table->string('SFullName');
+            $table->string('SICNo');
+            $table->string('SGender');
             $table->string('SNoPhone');
             $table->string('SAddress');
-            $table->string('SGender');
+            $table->string('SEmail');
             $table->string('UserID')->references('UserID')->on('userprofiles');
         });
     }

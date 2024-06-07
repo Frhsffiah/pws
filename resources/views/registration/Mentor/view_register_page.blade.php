@@ -1,11 +1,79 @@
+@extends('components.mentorLayout')
+
+@section('mentor')
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Registration Success</title>
     <link href="{{ asset('Module_1/register.css') }}" rel="stylesheet">
 
-    <div class="DT_Form1">
-    <h2>Draft Theses List</h2>
+    <style>
+        .container {
+            padding: 20px;
+            margin: 0 auto;
+            width: 2600px; /* Increased max-width for better table display */
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .view-btn {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .view-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h2>Registration List</h2>
     <table>
         <thead>
             <tr>
@@ -29,12 +97,12 @@
                 <th>R_Sponsorship</th>
                 <th>R_Program</th>
                 <th>R_Batch</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
         @foreach ($registers as $index => $registers)
                 <tr>
-                    <td>{{ $index + 1 }}</td>
                     <td>{{ $registers->RegID }}</td>
                     <td>{{ $registers->R_Type }}</td>
                     <td>{{ $registers->R_Title }}</td>
@@ -50,7 +118,7 @@
                     <td>{{ $registers->R_FbName }}</td>
                     <td>{{ $registers->R_CurrentEduLvl }}</td>
                     <td>{{ $registers->R_EduField }}</td>
-                    <td>{{ $registers->R_EduInsitute}}</td>
+                    <td>{{ $registers->R_EduInstitute}}</td>
                     <td>{{ $registers->R_Occupation }}</td>
                     <td>{{ $registers->R_Sponsorship }}</td>
                     <td>{{ $registers->R_Program }}</td>
@@ -62,5 +130,5 @@
             @endforeach
         </tbody>
     </table>
-    <a href="{{ route('registers.create') }}" class="btn btn-blue">New Registration</a>
 </div>
+@endsection
