@@ -18,6 +18,6 @@ class Registration extends Model
         'R_Religion', 'R_Race', 'R_Citizenship', 'R_Address', 'R_PhoneNum', 
         'R_Email', 'R_FbName', 'R_CurrentEduLvl', 'R_EduField', 'R_EduInstitute', 
         'R_Occupation', 'R_Sponsorship', 'R_Program', 'R_Batch', 'Staff_ID', 
-        'Platinum_ID'
+        'Platinum_ID', 'password'
     ];
 }

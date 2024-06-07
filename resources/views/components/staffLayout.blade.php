@@ -391,7 +391,7 @@
       </div>
     </nav>
     <div class="main-content">
-         @yield('staff')
+    @yield('staff')
     </div>
     <!-- JavaScript -->
     <script>
