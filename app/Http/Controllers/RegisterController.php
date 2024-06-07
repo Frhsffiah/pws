@@ -50,6 +50,7 @@ class RegisterController extends Controller
         'password' => 'required'
         // 'Staff_ID' => 'required|exists:staff,id',
         // 'Platinum_ID' => 'required|exists:platinums,id',
+        
     ]);
 
     $data = [
