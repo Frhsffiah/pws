@@ -8,14 +8,18 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
+    public function index(){ //list of registration for staff
+        $registers = Registration::all();
+        return view('registration.Staff.list_register_page', compact('registers'));
+    }
 
 
-    public function list(){ //list of registration
+    public function list(){ //list of registration for mentor
         $registers = Registration::all();
         return view('registration.Mentor.view_register_page', compact('registers'));
     }
    
-    public function registerPage()  //interface make new registration
+    public function create()  //interface make new registration
     {
         return view('registration.Staff.register_page'); // This should match the Blade template name
     }
@@ -77,12 +81,18 @@ class RegisterController extends Controller
     // Store the validated data in the database
     $registration = Registration::create($validatedData);
 
-    return redirect()->route('registers.show', $registration->RegID);
+    return redirect()->route('registers.index', $registration->RegID);
 }
 
     public function show($RegID) //specific view of selected RegID
 {
     $registers = Registration::findOrFail($RegID);
     return view('registration.Staff.view_register_page', compact('registers'));
+}
+
+public function show2($RegID) //specific view of selected RegID
+{
+    $registers = Registration::findOrFail($RegID);
+    return view('registration.Mentor.view2_register_page', compact('registers'));
 }
 }

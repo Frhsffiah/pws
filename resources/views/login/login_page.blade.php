@@ -13,6 +13,13 @@
         <form action="{{ route('LoginPost') }}" method="POST">
             @csrf
 
+            <!-- Display Success Message -->
+        @if (session('success'))
+            <div class="success-message">
+                {{ session('success') }}
+            </div>
+        @endif
+
             @if ($errors->any())
                 <div class="error-message">
                     <ul>

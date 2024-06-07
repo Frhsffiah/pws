@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Registration;
 use App\Models\users;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -158,5 +159,16 @@ class LoginController extends Controller
         }
 
         return false;
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/Login')->with('success', 'You have been logged out.');
     }
 }
