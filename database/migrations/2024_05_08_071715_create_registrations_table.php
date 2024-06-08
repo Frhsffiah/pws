@@ -34,10 +34,10 @@ return new class extends Migration
             $table->string('R_Program');
             $table->string('R_Batch');
             $table->string('password');
-            // $table->string('Staff_ID'); // Adding Staff_ID column
-            // $table->string('Platinum_ID'); 
-            // $table->foreign('Staff_ID')->references('Staff_ID')->on('staff')->onDelete('cascade');
-            // $table->foreign('Platinum_ID')->references('Platinum_ID')->on('platinums')->onDelete('cascade');
+           // $table->unsignedBigInteger('Staff_ID')->nullable(); // Adding Staff_ID column
+           // $table->unsignedBigInteger('Platinum_ID')->nullable();
+           // $table->foreign('Staff_ID')->references('Staff_ID')->on('staff')->onDelete('set_null');
+           // $table->foreign('Platinum_ID')->references('Platinum_ID')->on('platinums')->onDelete('set_null');
             $table->timestamps(); //to able create_at and updated_at columns
         });
     }
