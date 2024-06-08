@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <title>e-PWS</title>
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
    
@@ -100,7 +98,7 @@
 
         /* sidebar */
         .sidebar {
-            background-color: var(--white-color);
+            background-color: var(--pink-color);
             width: 260px;
             position: fixed;
             top: 0;
@@ -237,7 +235,7 @@
             width: 100%;
             color: var(--grey-color);
             border-top: 1px solid var(--grey-color-light);
-            background-color: var(--white-color);
+            background-color: var(--pink-color);
         }
         .bottom i {
             font-size: 20px;
@@ -264,7 +262,7 @@
                 display: block;
                 margin-right: 10px;
                 cursor: pointer;
-                color: #7ac2e0;
+                color: var(--grey-color);
             }
             .sidebar.close {
                 left: -100%;
@@ -359,7 +357,7 @@
     <!-- sidebar -->
     <nav class="sidebar">
       <div class="menu_content">
-      <h1 style="font-size: 24px;">Platinum</h1>
+        <h1>Platinum</h1>
         <ul class="menu_items">
         <div class="menu_title menu_dashboard"></div>
           <!-- duplicate or remove this li tag if you want to add or remove navlink with submenu -->
@@ -392,13 +390,13 @@
             </div>
 
             <ul class="menu_items submenu">
-              <!--<a href="#" class="nav_link sublink">Add New Expert</a> -->
-              <a href="{{ route('experts.index') }}" class="nav_link sublink">My Expert</a>
+              <a href="#" class="nav_link sublink">My Expert</a>
               <a href="#" class="nav_link sublink">Expert List</a>
             </ul>
           </li>
           <!-- end -->
-        
+        </ul>
+
         <ul class="menu_items">
           <!--<div class="menu_title menu_editor"></div>-->
           <!-- duplicate these li tag if you want to add or remove navlink only -->
