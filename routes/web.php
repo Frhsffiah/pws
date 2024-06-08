@@ -52,8 +52,17 @@ Route::get('/mentor/profile/edit', [UserProfileController::class, 'editProfile']
 Route::post('/mentor/profile/update', [UserProfileController::class, 'updateProfile'])->name('updateMentorProfile');
 
 //Module 2 (Expert)
-Route::get('/Expert', [ExpertController::class, 'expertView'])->name('expertView');
+Route::get('experts/create-step2', [ExpertController::class, 'createStep2'])->name('experts.create.step2');
+Route::post('experts/create-step2', [ExpertController::class, 'postCreateStep2'])->name('experts.post.create.step2');
+Route::get('experts/create-step3', [ExpertController::class, 'createStep3'])->name('experts.create.step3');
+Route::post('experts/create-step3', [ExpertController::class, 'postCreateStep3'])->name('experts.post.create.step3');
+Route::get('experts/create-step1', [ExpertController::class, 'createStep1'])->name('experts.create.step1');
+Route::post('experts/create-step1', [ExpertController::class, 'postCreateStep1'])->name('experts.post.create.step1');
 
+Route::resource('experts', ExpertController::class);
+Route::get('experts', [ExpertController::class, 'index'])->name('experts.index');
+Route::get('experts/{expert}', [ExpertController::class, 'show'])->name('experts.show');
+Route::resource('experts', ExpertController::class)->except(['create', 'store']);
 
 //Module 3 (Publication)
 Route::get('/Publication', [PublicationController::class, 'landingpublication'])->name('Publication.landingpublication');
