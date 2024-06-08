@@ -4,47 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Mentor;
-use App\Models\UserProfile;
+use App\Models\Registration;
 use Illuminate\Support\Facades\Auth;
 
 class UserProfileController extends Controller
 {
-    public function viewProfile()
+
+    public function show()
     {
-        $mentor = Mentor::where('UserID', Auth::id())->first();
-        return view('profile.Mentor.viewMentorProfilePage', compact('mentor'));
+        $platinumProfile = session('platinum');
+     
+        if (!$platinumProfile || !isset($platinumProfile['RegID'])) {
+            return redirect()->back()->with('error', 'Profile ID not found in session.');
+        }
+     
+        $id = $platinumProfile['RegID'];
+        $registration = Registration::where('RegID', $id)->first(); // Fetch the data
+     
+        if (!$registration) {
+            return redirect()->back()->with('error', 'User not found.');
+        } else {
+            // Pass the data to the view
+            return view('profile.Platinum.EditandUpdateProfile', ['registration' => $registration]);
+        }
     }
-
-    public function editProfile(Request $request)
-    {
-        $mentor = Mentor::where('UserID', Auth::id())->first();
-        return view('profile.Mentor.EditandUpdateProfile', compact('mentor'));
-    }
-
-    public function updateProfile(Request $request)
-    {
-        $mentor = Mentor::where('UserID', Auth::id())->first();
-
-        $validatedData = $request->validate([
-            'fullname' => 'required|string|max:255',
-            'ic_no' => 'required|string|max:20',
-            'gender' => 'required|string|max:10',
-            'no_phone' => 'required|string|max:15',
-            'address' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-        ]);
-
-        $mentor->update([
-            'fullname' => $request->input('fullname'),
-            'ic_no' => $request->input('ic_no'),
-            'gender' => $request->input('gender'),
-            'phone_no' => $request->input('phone_no'),
-            'address' => $request->input('address'),
-            'email' => $request->input('email'),
-        ]);
-
-        return redirect()->route('viewMentorProfile');
-    }
-
-    $Mentor = Mentor::create($validatedData);
+    
+    
 }

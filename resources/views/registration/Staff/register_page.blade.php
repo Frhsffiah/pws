@@ -14,10 +14,6 @@
         <form id="registerForm" action="{{ route('registers.store') }}" method="POST">
             @csrf
             <div class="form-group">
-                <label for="RegID">RegID</label>
-                <input type="text" id="RegID" name="RegID" required>
-            </div>
-            <div class="form-group">
                 <label for="R_Type">R_Type</label>
                 <select id="R_Type" name="R_Type" required>
                     <option value="new">New</option>
@@ -118,6 +114,21 @@
                 <label for="password">Password</label>
                 <input type="text" id="password" name="password" required>
             </div>
+            <div>
+                <!-- <label for="Staff_ID">Staff ID</label>
+                <input type="text" name="Staff_ID" id="Staff_ID" value="{{ old('Staff_ID') }}" required>
+                 @error('Staff_ID')
+            <div>{{ $message }}</div>
+             @enderror
+            </div>
+
+            <div>
+                <label for="Platinum_ID">Platinum ID</label>
+                <input type="text" name="Platinum_ID" id="Platinum_ID" value="{{ old('Platinum_ID') }}" required>
+                 @error('Platinum_ID')
+            <div>{{ $message }}</div>
+             @enderror
+            </div> -->
             <button type="submit" class="btn btn-blue" onclick="return confirm('Are you sure you want to register?')">Register</button>
         </form>
     </div>
@@ -129,11 +140,16 @@
         </div>
     </div>
 
+    <div id="successMessage" class="success-message">
+        Registration successful!
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const registerForm = document.getElementById('registerForm');
             const popup = document.getElementById('popup');
             const closeBtn = document.querySelector('.close-btn');
+            const successMessage = document.getElementById('successMessage');
 
             registerForm.addEventListener('submit', function(event) {
                 event.preventDefault(); // Prevent form submission
@@ -153,6 +169,7 @@
                 .then(data => {
                     if (data.message === 'Registration successful') {
                         popup.style.display = 'flex';
+                        successMessage.style.display = 'block';
                     } else {
                         alert('Registration failed: ' + data.message);
                     }

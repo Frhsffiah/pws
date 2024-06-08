@@ -45,11 +45,17 @@ Route::get('/MentorPage', [LoginController::class, 'mentorPage'])->name('mentorP
 Route::get('/userForm', [LoginController::class, 'userForm'])->name('userForm');
 Route::post('/userRegister', [LoginController::class, 'userPost'])->name('userPost');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/dashboard', [LoginController::class, 'platinumdashboard'])->name('dashboard');
+ 
 
 //Module 1 (UserProfile)
 Route::get('/mentor/profile', [UserProfileController::class, 'viewProfile'])->name('viewMentorProfile');
 Route::get('/mentor/profile/edit', [UserProfileController::class, 'editProfile'])->name('editMentorProfile');
 Route::post('/mentor/profile/update', [UserProfileController::class, 'updateProfile'])->name('updateMentorProfile');
+Route::get('/platinum/profile', [UserProfileController::class,'show'])->name('platinum.profile');
+
+//Route::get('/platinum/profile/{RegID}/edit', [UserProfileController::class,'editPlatinumProfile'])->name('platinum.profile.edit');
+//Route::put('/platinum/update/{RegID}', [UserProfileController::class,'updatePlatinumProfile'])->name('platinum.profile.update');
 
 //Module 2 (Expert)
 Route::get('/Expert', [ExpertController::class, 'expertView'])->name('expertView');
@@ -60,4 +66,6 @@ Route::get('/Publication', [PublicationController::class, 'landingpublication'])
 Route::get('/listpublication', [PublicationController::class, 'showList'])->name('Publication.showList');
 Route::get('/uploadpublication', [PublicationController::class, 'showUpload'])->name('Publication.showUpload');
 Route::post('/uploadpublication', [PublicationController::class, 'upload'])->name('Publication.store');
+
+
 

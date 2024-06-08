@@ -27,7 +27,7 @@ class RegisterController extends Controller
     public function store(Request $request)  //store data to database
 {
     $validatedData = $request->validate([
-        'RegID' => 'required|string|max:255|unique:registrations,RegID',
+       // 'RegID' => 'required|string|max:255|unique:registrations,RegID',
         'R_Type' => 'required|in:new,renewal,upgrade,downgrade,ala_carte',
         'R_Title' => 'required|string|max:255',
         'R_FullName' => 'required|string|max:255',
@@ -47,14 +47,14 @@ class RegisterController extends Controller
         'R_Sponsorship' => 'required|string|max:255',
         'R_Program' => 'required|string|max:255',
         'R_Batch' => 'required|string|max:255',
-        'password' => 'required'
-        // 'Staff_ID' => 'required|exists:staff,id',
-        // 'Platinum_ID' => 'required|exists:platinums,id',
+        'password' => 'required',
+        // 'Staff_ID' => 'required|exists:staff,Staff_ID',
+        // 'Platinum_ID' => 'required|exists:platinums,Platinum_ID',
         
     ]);
 
     $data = [
-        'RegID' => $request->RegID,
+        //'RegID' => $request->RegID,
         'R_Type' => $request->R_Type,
         'R_Title' => $request->R_Title,
         'R_FullName' => $request->R_FullName,
@@ -77,6 +77,17 @@ class RegisterController extends Controller
         'password' => $request->password
 
     ];
+    try {
+
+    
+    $registration = Registration::create($validatedData);
+    session(['platinums' => $registration->R_FullName]);
+
+    //redirect with success message
+    return redirect()->route('registers.create')->with('success', 'Platinum registered successfully!');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'Failed to register platinum.', $e->getMessage());
+    }
     $validatedData['password'] = Hash::make($request->password);
 
     // Store the validated data in the database

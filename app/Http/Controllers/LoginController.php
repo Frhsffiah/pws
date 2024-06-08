@@ -144,22 +144,27 @@ class LoginController extends Controller
         } elseif ($role == 'mentor') {
             session(['mentor' => $user->Mentor_ID]);
         } elseif ($role == 'platinum') {
-            session(['platinum' => $user->RegID]);
+            session(['platinum' => $user->RegID, 'platinum' => $user->R_FullName]);
         }
     }
 
     private function manualCheck($role)
     {
+        dd($role, session()->all());
+        
         if ($role == 'staff') {
             return session()->has('staff');
         } elseif ($role == 'mentor') {
             return session()->has('mentor');
         } elseif ($role == 'platinum') {
             return session()->has('platinum');
+            
         }
 
         return false;
     }
+
+
 
     public function logout(Request $request)
     {
