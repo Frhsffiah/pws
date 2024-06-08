@@ -31,17 +31,17 @@
                     <option value="thesis">Thesis</option>
                     <option value="report">Report</option>
                 </select>
-                <label for="file">File:</label>
-                <input type="file" id="file" name="Pub_File">
-                <label for="title">Title:</label>
-                <input type="text" id="title" name="Pub_Title">
+                <label for="Pub_File">File:</label>
+                <input type="file" id="Pub_File" name="Pub_File">
+                <label for="Pub_Title">Title:</label>
+                <input type="text" id="Pub_Title" name="Pub_Title">
                 <h3>Author Details</h3>
-                <label for="author">Author:</label>
-                <input type="text" id="author" name="Pub_author">
-                <label for="year">Year Publication:</label>
-                <input type="date" id="year" name="Pub_date">
-                <label for="doi">DOI:</label>
-                <input type="text" id="doi" name="Pub_DOI">
+                <label for="Pub_author">Author:</label>
+                <input type="text" id="Pub_author" name="Pub_author">
+                <label for="Pub_date">Year Publication:</label>
+                <input type="date" id="Pub_date" name="Pub_date">
+                <label for="Pub_DOI">DOI:</label>
+                <input type="text" id="Pub_DOI" name="Pub_DOI">
             </div>
             <button type="submit" class="upload-btn">Upload</button>
         </form>
@@ -115,12 +115,12 @@
     }
 
     .error-popup {
-        position: absolute;
+        position: fixed; /* Ensures popup stays centered on scroll */
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-color: #dc3545;
-        color: white;
+        background-color: white;
+        color: black;
         padding: 10px 20px;
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -128,13 +128,14 @@
     }
 
     .close-btn {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 20px;
-        cursor: pointer;
-        margin-left: auto;
-        display: block;
+        background: red;
+    border: none; /* Clearer border definition */
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: auto;
+    padding-left: 10px
+
     }
 
     .close-btn:focus {
