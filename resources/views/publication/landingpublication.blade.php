@@ -59,7 +59,7 @@
         <button class="publication-button" onclick="window.location.href='{{ url('uploadpublication') }}'">
             <i class='bx bx-upload'></i> Upload Publications
         </button>
-        <button class="publication-button" onclick="redirectTo('delete')">
+        <button class="publication-button" onclick="window.location.href='{{ url('deletepublication') }}'">
             <i class='bx bx-trash'></i> Delete Publications
         </button>
     </div>

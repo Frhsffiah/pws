@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('registrations', function (Blueprint $table) {
-            $table->bigIncrements('RegID');
+            
+            $table->id('RegID');
             $table->string('R_Type');
             $table->string('R_Title');
             $table->string('R_FullName');
@@ -33,8 +34,10 @@ return new class extends Migration
             $table->string('R_Program');
             $table->string('R_Batch');
             $table->string('password');
-            $table->string('Staff_ID')->default('S1212')->change();  //->references('Staff_ID')->on('staff');
-          //  $table->string('Platinum_ID')->unique();//->default('P1212')  ->change();  //->references('Platinum_ID')->on('platinums');
+           // $table->unsignedBigInteger('Staff_ID')->nullable(); // Adding Staff_ID column
+           // $table->unsignedBigInteger('Platinum_ID')->nullable();
+           // $table->foreign('Staff_ID')->references('Staff_ID')->on('staff')->onDelete('set_null');
+           // $table->foreign('Platinum_ID')->references('Platinum_ID')->on('platinums')->onDelete('set_null');
             $table->timestamps(); //to able create_at and updated_at columns
         });
     }

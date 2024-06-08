@@ -25,6 +25,8 @@
             --blue-color: #4070f4;
             --grey-color: #707070;
             --grey-color-light: #aaa;
+            --pink-color: #ff69b4;
+            --pink2-color: #FFB6C1;
         }
         body {
             background-color: #e7f2fd;
@@ -46,7 +48,7 @@
             top: 0;
             width: 100%;
             left: 0;
-            background-color: #7ac2e0; /*aaa*/ 
+            background-color: var(--pink-color);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -67,6 +69,7 @@
             height: 35px;
             object-fit: cover;
             border-radius: 50%;
+            
         }
         .search_bar {
             height: 47px;
@@ -97,7 +100,7 @@
 
         /* sidebar */
         .sidebar {
-            background-color: #7ac2e0;/*rr */
+            background-color: var(--white-color);
             width: 260px;
             position: fixed;
             top: 0;
@@ -169,7 +172,7 @@
             left: -20px;
         }
         .navlink_icon:hover {
-            background: var(--blue-color);
+            background: var(--pink2-color);
         }
         .sidebar .nav_link {
             display: flex;
@@ -186,7 +189,7 @@
         }
         .nav_link:hover {
             color: var(--white-color);
-            background: var(--blue-color);
+            background: var(--pink2-color);
         }
         .sidebar.close .nav_link:hover {
             background: var(--white-color);
@@ -234,7 +237,7 @@
             width: 100%;
             color: var(--grey-color);
             border-top: 1px solid var(--grey-color-light);
-            background-color: #7ac2e0;
+            background-color: var(--white-color);
         }
         .bottom i {
             font-size: 20px;
@@ -314,7 +317,7 @@
         }
         .logout-button:hover {
             color: var(--white-color);
-            background-color: var(--blue-color);
+            background-color: var(--pink2-color);
         }
         .sidebar.close .logout-button span {
             display: none;
@@ -323,21 +326,27 @@
             justify-content: center;
             padding: 10px;
         }
+        .welcome_text {
+           display: inline-block;
+           vertical-align: middle;
+        }
+        .pink-color {
+            color: var(--pink-color);
+        }
 
     </style>
   </head>
   <body>
+
     <!-- navbar -->
     <nav class="navbar">
       <div class="logo_item">
         <i class="bx bx-menu" id="sidebarOpen"></i>
         <img src="{{ asset('logo.png') }}" alt="">
-        e-Platinum World
+        e-Platinum World 
       </div>
 
-      <div class="search_bar">
-        <input type="text" placeholder="Search" />
-      </div>
+    
 
       <div class="navbar_content">
         <i class="bi bi-grid"></i>
@@ -365,7 +374,7 @@
             </div>
 
             <ul class="menu_items submenu">
-              <a href="#" class="nav_link sublink">My Profile</a>
+              <a href="{{ route('platinum.profile') }}" class="nav_link sublink">My Profile</a>
               <a href="#" class="nav_link sublink">Platinum Profile</a>
             </ul>
           </li>
@@ -482,6 +491,8 @@ if (window.innerWidth < 768) {
 } else {
   sidebar.classList.remove("close");
 }
+
+
 
     </script>
   </body>

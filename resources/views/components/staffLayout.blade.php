@@ -23,6 +23,8 @@
             --blue-color: #4070f4;
             --grey-color: #707070;
             --grey-color-light: #aaa;
+            --green-color: #77DD77;
+            --green2-color: #AAEAAA;
         }
         body {
             background-color: #e7f2fd;
@@ -44,7 +46,7 @@
             top: 0;
             width: 100%;
             left: 0;
-            background-color: var(--white-color);
+            background-color: var(--green-color);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -95,7 +97,7 @@
 
         /* sidebar */
         .sidebar {
-            background-color: var(--white-color);
+            background-color: var(--green-color);
             width: 260px;
             position: fixed;
             top: 0;
@@ -167,7 +169,7 @@
             left: -20px;
         }
         .navlink_icon:hover {
-            background: var(--blue-color);
+            background: var(--green2-color);
         }
         .sidebar .nav_link {
             display: flex;
@@ -184,7 +186,7 @@
         }
         .nav_link:hover {
             color: var(--white-color);
-            background: var(--blue-color);
+            background: var(--green2-color);
         }
         .sidebar.close .nav_link:hover {
             background: var(--white-color);
@@ -232,7 +234,7 @@
             width: 100%;
             color: var(--grey-color);
             border-top: 1px solid var(--grey-color-light);
-            background-color: var(--white-color);
+            background-color: var(--green-color);
         }
         .bottom i {
             font-size: 20px;
@@ -313,7 +315,7 @@
         }
         .logout-button:hover {
             color: var(--white-color);
-            background-color: var(--blue-color);
+            background-color: var(--green2-color);
         }
         .sidebar.close .logout-button span {
             display: none;
@@ -334,9 +336,6 @@
        </i>e-Platinum World
       </div>
 
-      <div class="search_bar">
-        <input type="text" placeholder="Search" />
-      </div>
 
       <div class="navbar_content">
         <i class="bi bi-grid"></i>

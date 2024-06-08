@@ -4,10 +4,10 @@
 
 
 <div class="container">
-    <h2 class="header-title">Upload Publications</h2>
+    <h2 class="header-title">Edit Publication</h2>
 
     <div class="form-container">
-        <form method="POST" action="{{ route('Publication.store') }}" enctype="multipart/form-data" class="centered-form">
+        <form method="POST" action="{{ route('Publication.update', $publication->PubID) }}" enctype="multipart/form-data" class="centered-form">
             @csrf
             <div class="rounded-form">
             @if ($errors->any())
@@ -28,23 +28,23 @@
                 <label for="Pub_type">Publication Type:</label>
                 <select id="Pub_type" name="Pub_type">
                     <option value="">Select Publication Type</option>
-                    <option value="article">Article</option>
-                    <option value="journal">Journal</option>
-                    <option value="thesis">Thesis</option>
-                    <option value="report">Report</option>
+                    <option value="article" {{ $publication->Pub_type == 'article' ? 'selected' : '' }}>Article</option>
+                    <option value="journal" {{ $publication->Pub_type == 'journal' ? 'selected' : '' }}>Journal</option>
+                    <option value="thesis" {{ $publication->Pub_type == 'thesis' ? 'selected' : '' }}>Thesis</option>
+                    <option value="report" {{ $publication->Pub_type == 'report' ? 'selected' : '' }}>Report</option>
                 </select>
                 <label for="Pub_File">File:</label>
                 <input type="file" id="Pub_File" name="Pub_File">
                 <label for="Pub_Title">Title:</label>
-                <input type="text" id="Pub_Title" name="Pub_Title">
+                <input type="text" id="Pub_Title" name="Pub_Title" value="{{ $publication->Pub_Title }}">
                 <label for="Pub_author">Author:</label>
-                <input type="text" id="Pub_author" name="Pub_author">
+                <input type="text" id="Pub_author" name="Pub_author" value="{{ $publication->Pub_author }}">
                 <label for="Pub_date">Year Publication:</label>
-                <input type="date" id="Pub_date" name="Pub_date">
+                <input type="date" id="Pub_date" name="Pub_date" value="{{ $publication->Pub_date }}">
                 <label for="Pub_DOI">DOI:</label>
-                <input type="text" id="Pub_DOI" name="Pub_DOI">
+                <input type="text" id="Pub_DOI" name="Pub_DOI" value="{{ $publication->Pub_DOI }}">
             </div>
-            <button type="submit" class="upload-btn">Upload</button>
+            <button type="submit" class="upload-btn">Save</button>
         </form>
     </div>
 </div>
@@ -135,7 +135,5 @@
         color: #a94442;
         border-color: #ebccd1;
     }
-
 </style>
-
 @endsection
