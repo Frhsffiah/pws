@@ -14,9 +14,10 @@ class PublicationController extends Controller
 
     public function showList()
     {
-        return view ('publication.listpublication');
+        $publications = Publication::all(); // Retrieve all publications
+        return view('publication.listpublication', compact('publications'));
     }
-
+    
     public function showUpload()
     {
         return view ('publication.uploadpublication');
@@ -24,31 +25,79 @@ class PublicationController extends Controller
 
     public function upload(Request $request)
     {
-        // Validate and handle the upload logic here
-        $validated = $request->validate([
-            'Pub_type' => 'required|string',
-            'Pub_File' => 'required|file',
-            'Pub_Title' => 'required|string',
-            'Pub_author' => 'required|string',
+        // Validate the request
+        $request->validate([
+            'Pub_type' => 'required|string|max:255',
+            'Pub_File' => 'required|file|mimes:pdf,doc,docx', // add your file validation rules
+            'Pub_Title' => 'required|string|max:255',
+            'Pub_author' => 'required|string|max:255',
             'Pub_date' => 'required|date',
-            'Pub_DOI' => 'nullable|string',
+            'Pub_DOI' => 'required|string|max:255',
         ]);
-
-        // Example logic for handling the file and storing data
-        $filePath = $request->file('file')->store('publications');
-
+    
+        // Handle file upload
+        if ($request->hasFile('Pub_File')) {
+            $file = $request->file('Pub_File');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('publications', $fileName, 'public');
+        }
+    
+        // Create publication
         Publication::create([
-            'Pub_type' => $validated['Pub_type'],
-            'Pub_File' => $filePath,
-            'Pub_Title' => $validated['Pub_Title'],
-            'Pub_author' => $validated['Pub_author'],
-            'Pub_date' => $validated['Pub_date'],
-            'Pub_DOI' => $validated['Pub_DOI'],
+            'Pub_type' => $request->input('Pub_type'),
+            'Pub_File' => $filePath ?? null, // save file path
+            'Pub_Title' => $request->input('Pub_Title'),
+            'Pub_author' => $request->input('Pub_author'),
+            'Pub_date' => $request->input('Pub_date'),
+            'Pub_DOI' => $request->input('Pub_DOI'),
+            'Platinum_ID' => $request->input('Platinum_ID'),
+            'Mentor_ID' => $request->input('Mentor_ID'),
         ]);
-
-        return redirect()->route('publication.showList')->with('success', 'Publication uploaded successfully!');
+    
+        return redirect()->route('Publication.showUpload')->with('success', 'Publication uploaded successfully.');
     }
 
-    
+public function showDelete()
+{
+    $publications = Publication::all(); // Retrieve all publications
+    return view('publication.deletepublication', compact('publications'));
+}
+
+public function destroy(Request $request)
+{
+    $publicationId = $request->input('publication_id');
+    Publication::where('PubID', $publicationId)->delete();
+    return back()->with('success', 'Publication deleted successfully!');
+}
+
+public function edit($id)
+{
+    $publication = Publication::findOrFail($id);
+    return view('publication.editpublication', compact('publication'));
+}
+
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'Pub_type' => 'required|string|max:255',
+        'Pub_Title' => 'required|string|max:255',
+        'Pub_author' => 'required|string|max:255',
+        'Pub_date' => 'required|date',
+        'Pub_DOI' => 'nullable|string|max:255',
+        'Pub_File' => 'nullable|file|mimes:pdf,doc,docx'
+    ]);
+
+    $publication = Publication::findOrFail($id);
+    $publication->update($request->all());
+
+    return back()->with('success', 'Publication updated successfully.');
+}
+
+public function view($id)
+{
+    $publication = Publication::findOrFail($id);
+    return view('publication.viewpublication', compact('publication'));
+}
+
 
 }

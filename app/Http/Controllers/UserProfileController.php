@@ -46,5 +46,4 @@ class UserProfileController extends Controller
         return redirect()->route('viewMentorProfile');
     }
 
-    $Mentor = Mentor::create($validatedData);
 }

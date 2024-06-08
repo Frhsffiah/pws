@@ -2,7 +2,6 @@
 
 @section('platinum')
 <div class="container">
-    <button class="back-btn" onclick="window.location.href='{{ url('Publication') }}'">BACK</button>
     <h2>List Publications</h2>
     <table class="publication-table">
         <thead>
@@ -15,17 +14,18 @@
             </tr>
         </thead>
         <tbody>
-            
+            @foreach ($publications as $publication)
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{ $publication->Pub_Title }}</td>
+                <td>{{ $publication->Pub_type }}</td>
+                <td>{{ $publication->Pub_date }}</td>
+                <td>{{ $publication->Pub_author }}</td>
                 <td>
-                    <button class="edit-btn" onclick="">Edit</button>
+                    <button class="edit-btn" onclick="editPublication('{{ $publication->PubID }}')">Edit</button>
+                    <button class="view-btn" onclick="viewPublication('{{ $publication->PubID }}')">View</button>
                 </td>
             </tr>
-            
+            @endforeach
         </tbody>
     </table>
 </div>
@@ -52,7 +52,7 @@
         background-color: #f2f2f2;
     }
 
-    .edit-btn {
+    .edit-btn, .view-btn {
         background-color: #4CAF50;
         color: white;
         padding: 5px 10px;
@@ -61,25 +61,16 @@
         cursor: pointer;
     }
 
-    .edit-btn:hover {
+    .edit-btn:hover, .view-btn:hover {
         background-color: #45a049;
     }
 
-    .back-btn {
-        position: absolute;
-        top: 0;
-        right: 0;
-        background-color: #f44336;
-        color: white;
-        padding: 10px 20px;
-        margin: 10px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
+    .view-btn {
+        background-color: #2196F3;
     }
 
-    .back-btn:hover {
-        background-color: #d32f2f;
+    .view-btn:hover {
+        background-color: #1976D2;
     }
 </style>
 
@@ -88,7 +79,13 @@
         // Redirect to the edit page with the publication ID
         window.location.href = `/editpublication/${pubId}`;
     }
+
+    function viewPublication(pubId) {
+        // Redirect to the view page with the publication ID
+        window.location.href = `/viewpublication/${pubId}`;
+    }
 </script>
 @endsection
+
 
 

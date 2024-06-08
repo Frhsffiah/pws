@@ -56,8 +56,14 @@ Route::get('/Expert', [ExpertController::class, 'expertView'])->name('expertView
 
 
 //Module 3 (Publication)
+Route::resource('/Publication', PublicationController::class);
 Route::get('/Publication', [PublicationController::class, 'landingpublication'])->name('Publication.landingpublication');
 Route::get('/listpublication', [PublicationController::class, 'showList'])->name('Publication.showList');
 Route::get('/uploadpublication', [PublicationController::class, 'showUpload'])->name('Publication.showUpload');
 Route::post('/uploadpublication', [PublicationController::class, 'upload'])->name('Publication.store');
-
+Route::get('/deletepublication', [PublicationController::class, 'showDelete'])->name('Publication.showDelete');
+Route::delete('/Publication/destroy', [PublicationController::class, 'destroy'])->name('Publication.destroy');
+Route::get('/editpublication', [PublicationController::class, 'showEdit'])->name('Publication.showEdit');
+Route::get('/editpublication/{id}', [PublicationController::class, 'edit'])->name('Publication.edit');
+Route::post('/editpublication/{id}', [PublicationController::class, 'update'])->name('Publication.update');
+Route::get('/viewpublication/{id}', [PublicationController::class, 'view'])->name('Publication.view');
