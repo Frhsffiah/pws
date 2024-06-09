@@ -31,8 +31,5 @@ class ReportController extends Controller
 
         return view('registration.Staff.generate_report_page', compact('institutes', 'report'));
     }
-    public function __construct()
-    {
-        $this->middleware('auth'); // Apply authentication middleware to all methods in the controller
-    }
+  
 }

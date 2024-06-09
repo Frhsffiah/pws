@@ -40,11 +40,6 @@ Route::get('/Register-page/create', [RegisterController::class, 'create'])->name
 Route::post('/Register-page/create', [RegisterController::class, 'store'])->name('registers.store');
 Route::get('/listRegistration', [RegisterController::class, 'index'])->name('registers.index'); //staff: list of register
 Route::get('/Register-page/{RegID}', [RegisterController::class, 'show'])->name('registers.show');
-<<<<<<< HEAD
-=======
-
-
->>>>>>> cabc6b0a52924f92497482a02acc9667f31a5bce
 Route::post('/Login', [LoginController::class, 'LoginPost'])->name('LoginPost');
 Route::get('/Login', [LoginController::class, 'loginPage'])->name('loginPage');
 Route::get('/PlatinumPage', [LoginController::class, 'platinumPage'])->name('PlatinumPage');
@@ -55,10 +50,9 @@ Route::post('/userRegister', [LoginController::class, 'userPost'])->name('userPo
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
-Route::middleware('auth')->group(function () {
 Route::get('/reports/generate', [ReportController::class, 'showGenerateReportForm'])->name('reports.generate.form');
 Route::post('/reports/generate', [ReportController::class, 'generateReport'])->name('reports.generate');
-});
+
  
 
 //Module 1 (UserProfile)
@@ -74,7 +68,6 @@ Route::get('/platinum/profile/view/{id}', [UserProfileController::class, 'viewOt
 
 
 //Module 2 (Expert)
-<<<<<<< HEAD
 Route::get('/experts/mentor', [ExpertController::class, 'mentorExpert'])->name('experts.mentor');
 Route::get('experts/create-step1', [ExpertController::class, 'createStep1'])->name('experts.create.step1');
 Route::post('experts/create-step1', [ExpertController::class, 'postCreateStep1'])->name('experts.post.create.step1');
@@ -88,10 +81,8 @@ Route::get('/allExperts', [ExpertController::class, 'allExperts'])->name('expert
 
 Route::get('experts/{expert}', [ExpertController::class, 'show'])->name('experts.show');
 Route::resource('experts', ExpertController::class)->except(['create', 'store']);
-=======
 Route::get('/Expert', [ExpertController::class, 'expertView'])->name('expertView');
 
->>>>>>> cabc6b0a52924f92497482a02acc9667f31a5bce
 
 //Module 3 (Publication)
 Route::get('/Publication', [PublicationController::class, 'landingpublication'])->name('Publication.landingpublication');
