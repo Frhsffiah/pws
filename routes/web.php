@@ -25,10 +25,6 @@ Route::get('/', function () {
 });
 
 //Module 1 (Login)
-//Route::get('/Login', [LoginController::class, 'LoginPage'])->name('LoginPage');
-//Route::get('/ForgotPassword', [LoginController::class, 'ForgotPasswordPage'])->name('forgotPassword');
-//Route::get('/ResetPassword', [ResetPasswordController::class, 'ResetPasswordPage'])->name('resetPassword');
-//Route::post('/password/update', [ResetPasswordController::class, 'update'])->name('password.update');
 
 Route::get('/forgot-password', [LoginController::class, 'showForgotPasswordForm'])->name('forgotPassword');
 Route::post('/forgot-password', [LoginController::class, 'handleForgotPassword'])->name('handleForgotPassword');
@@ -83,6 +79,6 @@ Route::get('/Publication', [PublicationController::class, 'landingpublication'])
 Route::get('/listpublication', [PublicationController::class, 'showList'])->name('Publication.showList');
 Route::get('/uploadpublication', [PublicationController::class, 'showUpload'])->name('Publication.showUpload');
 Route::post('/uploadpublication', [PublicationController::class, 'upload'])->name('Publication.store');
-
+Route::get('/searchpublication', [PublicationController::class, 'showSearch'])->name('Publication.search');
 
 
