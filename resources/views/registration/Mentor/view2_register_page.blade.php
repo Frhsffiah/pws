@@ -155,7 +155,7 @@
             <th>Batch</th>
             <td>{{ $registers->R_Batch }}</td>
         </tr>
-        <a href="{{ route('registers.show2', $registers->RegID) }}" class="view-btn">View</a>
+        <a href="{{ route('registers.show2', $registers->RegID) }}" class="view-btn"></a>
     </table>
 </div>
 @endsection

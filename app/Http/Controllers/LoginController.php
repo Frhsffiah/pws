@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Registration;
 use App\Models\Users;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\Password;
 
 class LoginController extends Controller
 {
@@ -15,16 +18,36 @@ class LoginController extends Controller
         return view('login.login_page');
     }
 
-    public function forgotPasswordPage()
+    public function showForgotPasswordForm()
     {
         return view('login.forgot_password_page');
     }
 
+    public function handleForgotPassword(Request $request)
+{
+    $request->validate(['email' => 'required|email']);
+
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
+
+    return $status === Password::RESET_LINK_SENT
+        ? response()->json(['status' => __($status)], 200)
+        : response()->json(['error' => __($status)], 400);
+}
+
     public function platinumPage()
     {
+        
         return view('components.platinumLayout');
     }
 
+    public function expertPage(Request $request)
+    {
+        // Retrieve RegID from the session
+        $regID = $request->session()->get('platinum');
+        return view('experts.index', compact('RegID'));
+    }
     public function staffPage()
     {
         return view('components.staffLayout');
@@ -62,6 +85,7 @@ class LoginController extends Controller
         }
     }
 
+
     public function loginPost(Request $request)
     {
         $request->validate([
@@ -76,7 +100,7 @@ class LoginController extends Controller
 
         if ($role == 'platinum') {
             if ($this->manualPlatinumAuth($email, $password)) {
-                $user = Registration::where('R_Email', $email)->first();
+               $user = Registration::where('R_Email', $email)->first();
                 $this->manualLogin('platinum', $user);
                 return redirect()->route('PlatinumPage');
             }
@@ -90,7 +114,7 @@ class LoginController extends Controller
             if ($this->manualStaffAuth($email, $password)) {
                 $user = Users::where('email', $email)->first();
                 $this->manualLogin('staff', $user);
-                return redirect()->route('staffPage');
+                return redirect()->route('StaffPage');
             }
         }
 
@@ -147,6 +171,8 @@ class LoginController extends Controller
     
         $request->session()->regenerateToken();
     
-        return redirect('/Login')->with('success', 'You have been logged out.');
+        return redirect('/Login')->with('success', 'You have been logged out.');
     }
+
+    
 }

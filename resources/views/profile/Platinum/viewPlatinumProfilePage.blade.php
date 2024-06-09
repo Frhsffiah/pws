@@ -1,3 +1,4 @@
+
 @extends('components.platinumLayout')
 
 @section('platinum')
@@ -10,12 +11,13 @@
 <title>Platinum Profile</title>
 <style>
     /* CSS styles */
+    
     .container {
         margin: 0 auto;
         padding: 20px;
         max-width: 800px;
     }
-
+   
     h1 {
         font-size: 28px;
         text-align: center;
@@ -111,8 +113,7 @@
         {{ session('success') }}
     </div>
     @endif
-
-    <h2>Platinum Profile</h2>
+<h2>Platinum Profile</h2>
     <form id="editProfileForm" action="{{ route('platinum.profile') }}" method="POST">
         @csrf
         @method('PUT')

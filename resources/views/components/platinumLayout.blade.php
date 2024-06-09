@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">  
     <title>e-PWS</title>
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
    
@@ -357,7 +358,7 @@
     <!-- sidebar -->
     <nav class="sidebar">
       <div class="menu_content">
-        <h1>Platinum</h1>
+        <h5>Platinum</h5>
         <ul class="menu_items">
         <div class="menu_title menu_dashboard"></div>
           <!-- duplicate or remove this li tag if you want to add or remove navlink with submenu -->
@@ -390,8 +391,8 @@
             </div>
 
             <ul class="menu_items submenu">
-              <a href="#" class="nav_link sublink">My Expert</a>
-              <a href="#" class="nav_link sublink">Expert List</a>
+              <a href="{{ route('experts.index') }}" class="nav_link sublink">My Expert</a>
+              <a href="{{ route('experts.all') }}" class="nav_link sublink">Expert List</a>
             </ul>
           </li>
           <!-- end -->

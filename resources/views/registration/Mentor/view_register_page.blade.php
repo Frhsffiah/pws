@@ -124,7 +124,7 @@
                     <td>{{ $registers->R_Program }}</td>
                     <td>{{ $registers->R_Batch }}</td>
                     <td>
-                        <a href="{{ route('registers.show', $registers->RegID) }}">View</a>
+                        <a href="{{ route('registers.show2', $registers->RegID) }}">View</a>
                     </td>
                 </tr>
             @endforeach

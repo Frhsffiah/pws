@@ -7,64 +7,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Platinum Profile</title>
+    <title>Platinum Profile</title>
     <style>
         /* CSS styles */
+       
+
         .container {
-            margin: 0 auto;
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
             padding: 20px;
-            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        h2 {
-            font-size: 28px;
+        h1 {
             text-align: center;
+            color: #333;
+        }
+
+        form {
             margin-bottom: 20px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         label {
-            display: block;
-            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
         }
 
         input[type="text"],
-        input[type="email"],
-        input[type="password"] {
+        input[type="email"] {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            box-sizing: border-box;
         }
 
         .btn {
-            width: 30%; /* Adjust button width */
-            padding: 10px;
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            background-color: #007bff;
-            color: #fff;
-            display: block;
-            margin: auto; /* Center the button */
+            text-decoration: none;
         }
 
         .btn:hover {
             background-color: #0056b3;
         }
+
+        .back-btn {
+            background-color: #dc3545;
+        }
+
+        .back-btn:hover {
+            background-color: #bd2130;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Edit Platinum Profile</h2>
-        <form id="editProfileForm" action="{{ route('platinum.profile.update') }}" method="POST">
-            @csrf
-            @method('PUT')
-            <!-- Form fields -->
-            <div class="form-group">
+        <h1>Platinum Profile</h1>
+        <form id="editProfileForm" action="{{ route('platinum.other.view', ['id' => $registration->RegID]) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <!-- Display the profile details -->
+        <div class="form-group">
                 <label for="R_Title">Title</label>
                 <input type="text" id="R_Title" name="R_Title" value="{{ $registration->R_Title }}">
             </div>
@@ -92,10 +107,10 @@
                 <label for="R_EduInstitute">Education Institute</label>
                 <input type="text" id="R_EduInstitute" name="R_EduInstitute" value="{{ $registration->R_EduInstitute }}">
             </div>
-            <div class="form-group">
-                <button type="submit" class="btn">SAVE CHANGES</button>
-            </div>
-        </form>
+        
+        <!-- Back button -->
+        <a href="{{ route('platinum.search') }}" class="btn back-btn">Back</a>
+    </form>
     </div>
 </body>
 </html>

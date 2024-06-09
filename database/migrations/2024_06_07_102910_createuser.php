@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('email')->unique(); // Unique email field
             $table->string('role'); // Role field
             $table->string('password'); // Password field
-            $table->unsignedBigInteger('RegID')->nullable()->after('id');
+            $table->unsignedBigInteger('RegID')->nullable();
             $table->foreign('RegID')->references('RegID')->on('registrations')->onDelete('cascade');
             $table->timestamps(); // Created at and updated at timestamps
         });

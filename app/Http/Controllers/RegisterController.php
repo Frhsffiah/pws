@@ -77,4 +77,5 @@ class RegisterController extends Controller
         $registers = Registration::findOrFail($RegID);
         return view('registration.Mentor.view2_register_page', compact('registers'));
     }
+
 }

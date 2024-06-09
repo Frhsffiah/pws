@@ -7,6 +7,11 @@
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
             <h2>My Expert List</h2>
+    @if(isset($regID))
+        <p>Your Registration ID: {{ $regID }}</p>
+    @else
+        <p>Registration ID not found.</p>
+    @endif
         </div>
         <br>
         <div class="pull-right">
@@ -68,7 +73,7 @@
                 </form>
             </td>
         </tr>
-    @endforeach
+    @endforeach 
 </table>
 
 

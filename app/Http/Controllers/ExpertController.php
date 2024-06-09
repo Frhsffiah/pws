@@ -11,6 +11,9 @@ use App\Models\Expert;
 use App\Models\Expert_research;
 use App\Models\Expert_paper;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Registration;
+
   
 class ExpertController extends Controller
 {
@@ -20,16 +23,24 @@ class ExpertController extends Controller
      */
     public function index(Request $request)
     {
-        $experts = Expert::query()
-            ->when(
-                $request->search,
-                function (Builder $builder) use ($request) {
-                    $builder->where('eName', 'like', "%{$request->search}%")
-                        ->orWhere('eInstitution', 'like', "%{$request->search}%")
-                        ->orWhere('eEmail', 'like', "%{$request->search}%")
-                        ->orWhere('ePhone', 'like', "%{$request->search}%");
-                }
-            )->paginate(5);
+        //$regID = $request->query('RegID');
+       
+        if (session('platinum')) {
+            $experts = Expert::query()
+                ->where('RegID', session('platinum'))
+                ->when(
+                    $request->search,
+                    function (Builder $builder) use ($request) {
+                        $builder->where('eName', 'like', "%{$request->search}%")
+                            ->orWhere('eInstitution', 'like', "%{$request->search}%")
+                            ->orWhere('eEmail', 'like', "%{$request->search}%")
+                            ->orWhere('ePhone', 'like', "%{$request->search}%");
+                    }
+                )->paginate(5);
+        } else {
+            // For other users, you can handle differently or return an empty collection
+            $experts = collect();
+        }
     
         return view('experts.index', compact('experts'));
     }
@@ -39,24 +50,29 @@ class ExpertController extends Controller
      */
     public function createStep1() 
     {
-        $userID = Auth::user() -> RegID;
-        $registrations = \App\Models\Registration::all();
-        return view('experts.create-step1', compact('registrations'));
+        $regID = session('platinum');
+        //$id = session('platinum');
+        //$registration = Registration::where('RegID', $id)->first();
+        //$registrations = \App\Models\Registration::all();
+        return view('experts.create-step1', compact('regID'));
     }
 
     public function postCreateStep1(Request $request)
     {
-        
-        $registrations = \App\Models\Registration::all();
+        $regID = session('platinum');
+       // $id = session('platinum');
+        //$registration = Registration::where('RegID', $id)->first();
+       // $registrations = \App\Models\Registration::all();
         $request->validate([
             'eName' => 'required',
             'eInstitution' => 'required',
             'eEmail' => 'required|email',
             'ePhone' => 'required',
-            'RegID' => 'required|exists:registrations,RegID'
+            //'RegID' => 'required|exists:registration,RegID'
         ]);
 
-        $expertData = $request->only(['eName', 'eInstitution', 'eEmail', 'ePhone','RegID']);
+        $expertData = $request->only(['eName', 'eInstitution', 'eEmail', 'ePhone']);
+        $expertData['RegID'] = $regID;
         $request->session()->put('expert', $expertData);
 
         return redirect()->route('experts.create.step2');
@@ -100,12 +116,13 @@ class ExpertController extends Controller
 
         $paperData = $request->only(['paperTitle', 'paperYear', 'paperType']);
         $request->session()->put('paper', $paperData);
-
         $expertData = $request->session()->get('expert');
         $researchData = $request->session()->get('research');
         $paperData = $request->session()->get('paper');
 
+
         $expert = Expert::create($expertData);
+
 
         foreach ($researchData['researchTitle'] as $index => $title) {
             Expert_research::create([
@@ -128,7 +145,13 @@ class ExpertController extends Controller
         return redirect()->route('experts.index')->with('success', 'Expert added successfully.');
     }
 
+    public function allExperts()
+    {
+        // Retrieve all experts from the database
+        $allExperts = Expert::all();
 
+        return view('experts.allExpert', compact('allExperts'));
+    }
   
     /**
      * Display the specified resource.
@@ -162,6 +185,18 @@ class ExpertController extends Controller
         
         return redirect()->route('experts.index')
                         ->with('success','Expert updated successfully');
+    }
+
+    public function mentorExpert(Request $request): View
+    {
+        // Retrieve all experts from the database
+        $experts = Expert::query()
+            ->when($request->has('domain'), function ($query) use ($request) {
+                $query->where('eDomain', 'like', '%' . $request->input('domain') . '%');
+            })
+            ->paginate(10);
+
+        return view('experts.mentorExpert', compact('experts'));
     }
   
     /**

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Registration;
-use Illuminate\Support\Facades\Auth;
 
 class UserProfileController extends Controller
 {
@@ -95,7 +94,15 @@ class UserProfileController extends Controller
         return view('profile.Platinum.viewPlatinumProfilePage', ['registration' => $registration]);
     }
 
+    public function viewOtherProfile($id)
+    {
+        $registration = Registration::find($id);
+    
+        if (!$registration) {
+            return redirect()->route('platinum.search')->with('error', 'Profile not found.');
+        }
+    
+        return view('profile.Platinum.viewOtherProfile', ['registration' => $registration]);
+    }
 
 }
-
-

@@ -22,16 +22,7 @@
 
 <form action="{{ route('experts.post.create.step1') }}" method="POST">
     @csrf
-    <div>
-        <label for="RegID">Registration:</label>
-        <select name="RegID" id="RegID" required>
-            @foreach($registrations as $registration)
-                <option value="{{ $registration->RegID }}">
-                    {{ $registration->RegID }} - {{ $registration->R_FullName }}
-                </option>
-            @endforeach
-        </select>
-    </div>
+    
     <div class="form-group">
         <strong>Name:</strong>
         <input type="text" name="eName" class="form-control" placeholder="Name" value="{{ session('expert.eName') }}">
