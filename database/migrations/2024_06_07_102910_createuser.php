@@ -13,15 +13,20 @@ return new class extends Migration
             $table->string('email')->unique(); // Unique email field
             $table->string('role'); // Role field
             $table->string('password'); // Password field
+            $table->unsignedBigInteger('RegID')->nullable()->after('id');
+            $table->foreign('RegID')->references('RegID')->on('registrations')->onDelete('cascade');
             $table->timestamps(); // Created at and updated at timestamps
+        });
+        
+        Schema::table('users', function (Blueprint $table) {
+           
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
+
         Schema::dropIfExists('users'); // Drop the users table if it exists
     }
 };
+

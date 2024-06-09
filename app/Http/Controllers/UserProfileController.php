@@ -74,6 +74,9 @@ class UserProfileController extends Controller
         return redirect()->route('platinum.profile')->with('success', 'Profile updated successfully!.');
     }
 
+}
+
+
     public function search(Request $request)
 {
     $searchName = $request->input('searchName');
