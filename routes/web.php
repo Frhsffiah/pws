@@ -74,6 +74,6 @@ Route::get('/editpublication', [PublicationController::class, 'showEdit'])->name
 Route::get('/editpublication/{id}', [PublicationController::class, 'edit'])->name('Publication.edit');
 Route::post('/editpublication/{id}', [PublicationController::class, 'update'])->name('Publication.update');
 Route::get('/viewpublication/{id}', [PublicationController::class, 'view'])->name('Publication.view');
-
+Route::get('/searchpublication', [PublicationController::class, 'showSearch'])->name('Publication.search');
 
 

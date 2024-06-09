@@ -22,7 +22,9 @@
                         <option value="{{ $publication->PubID }}">{{ $publication->Pub_Title }}</option>
                     @endforeach
                 </select>
+                <div class="button-container">
                 <button type="submit" class="delete-btn">DELETE</button>
+                </div>
             </form>
         </div>
     </div>
@@ -87,18 +89,25 @@
         border-radius: 5px;
     }
 
+    .button-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
     .delete-btn {
-        width: 15%;
-        background-color: #ff4d4d;
+        width: auto;
+        background-color: var(--pink-color);
         color: white;
         padding: 10px 20px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        
     }
 
     .delete-btn:hover {
-        background-color: #cc0000;
+        background-color: #575757;
     }
 
     .alert {

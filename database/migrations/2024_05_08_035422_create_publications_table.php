@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('Pub_type');
             $table->integer('Pub_DOI');
             $table->string('Pub_File')->nullable();
-            $table->string('Platinum_ID')->references('Platinum_ID')->on('platinums')->nullable();
+            $table->string('RegID')->references('RegID')->on('platinums')->nullable();
             $table->string('Mentor_ID')->references('Mentor_ID')->on('mentors')->nullable();
 
 
