@@ -55,8 +55,6 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/reports/generate', [ReportController::class, 'showGenerateReportForm'])->name('reports.generate.form');
 Route::post('/reports/generate', [ReportController::class, 'generateReport'])->name('reports.generate');
 
- 
-
 //Module 1 (UserProfile)
 Route::get('/platinum/profile', [UserProfileController::class,'show'])->name('platinum.profile');
 Route::put('/platinum/profile', [UserProfileController::class, 'update'])->name('platinum.profile.update');
