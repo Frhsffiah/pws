@@ -76,7 +76,7 @@ Route::get('experts/create-step3', [ExpertController::class, 'createStep3'])->na
 Route::post('experts/create-step3', [ExpertController::class, 'postCreateStep3'])->name('experts.post.create.step3');
 Route::resource('experts', ExpertController::class);
 Route::get('experts', [ExpertController::class, 'index'])->name('experts.index');
-Route::get('/allExperts', [ExpertController::class, 'allExperts'])->name('experts.all');// Route for displaying all experts
+Route::get('/allExperts', [ExpertController::class, 'allExperts'])->name('experts.all');
 
 Route::get('experts/{expert}', [ExpertController::class, 'show'])->name('experts.show');
 Route::resource('experts', ExpertController::class)->except(['create', 'store']);

@@ -3,7 +3,7 @@
 @section('mentor')
 <div class="container">
     <h2>View Publication</h2>
-    <a href="{{ route('Publication.search') }}" class="back-btn">Back</a>
+    <a href="{{ route('Publication.searchMentor') }}" class="back-btn">Back</a>
     <div class="publication-details">
         <div class="details-box">
         <div class="title-container">
