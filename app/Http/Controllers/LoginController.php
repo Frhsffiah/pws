@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Registration;
 use App\Models\Users;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
+
 
 class LoginController extends Controller
 {
@@ -22,9 +24,16 @@ class LoginController extends Controller
 
     public function platinumPage()
     {
+        
         return view('components.platinumLayout');
     }
 
+    public function expertPage(Request $request)
+    {
+        // Retrieve RegID from the session
+        $regID = $request->session()->get('platinum');
+        return view('experts.index', compact('RegID'));
+    }
     public function staffPage()
     {
         return view('components.staffLayout');
@@ -62,6 +71,7 @@ class LoginController extends Controller
         }
     }
 
+
     public function loginPost(Request $request)
     {
         $request->validate([
@@ -76,7 +86,7 @@ class LoginController extends Controller
 
         if ($role == 'platinum') {
             if ($this->manualPlatinumAuth($email, $password)) {
-                $user = Registration::where('R_Email', $email)->first();
+               $user = Registration::where('R_Email', $email)->first();
                 $this->manualLogin('platinum', $user);
                 return redirect()->route('PlatinumPage');
             }
@@ -90,7 +100,7 @@ class LoginController extends Controller
             if ($this->manualStaffAuth($email, $password)) {
                 $user = Users::where('email', $email)->first();
                 $this->manualLogin('staff', $user);
-                return redirect()->route('staffPage');
+                return redirect()->route('StaffPage');
             }
         }
 
@@ -147,6 +157,6 @@ class LoginController extends Controller
     
         $request->session()->regenerateToken();
     
-        return redirect('/Login')->with('success', 'You have been logged out.');
+        return redirect('/Login')->with('success', 'You have been logged out.');
     }
 }

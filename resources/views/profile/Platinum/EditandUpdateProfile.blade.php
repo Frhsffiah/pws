@@ -60,7 +60,7 @@
 <div class="container">
 
         <h2>Platinum Profile</h2>
-        <form id="editProfileForm" action="{{ route('platinum.profile' }}" method="POST">
+        <form id="editProfileForm" action="{{ route('platinum.profile')}}" method="POST">
             @csrf
             @method('PUT')
             <!-- Form fields here, similar to the ones used for registration -->
