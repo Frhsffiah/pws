@@ -373,7 +373,7 @@
 
             <ul class="menu_items submenu">
               <a href="{{ route('platinum.profile') }}" class="nav_link sublink">My Profile</a>
-              <a href="#" class="nav_link sublink">Platinum Profile</a>
+              <a href="{{ route('platinum.search') }}" class="nav_link sublink">Platinum Profile</a>
             </ul>
           </li>
           <!-- end -->

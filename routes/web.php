@@ -49,18 +49,24 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
  
 
 //Module 1 (UserProfile)
-Route::get('/mentor/profile', [UserProfileController::class, 'viewProfile'])->name('viewMentorProfile');
-Route::get('/mentor/profile/edit', [UserProfileController::class, 'editProfile'])->name('editMentorProfile');
-Route::post('/mentor/profile/update', [UserProfileController::class, 'updateProfile'])->name('updateMentorProfile');
 Route::get('/platinum/profile', [UserProfileController::class,'show'])->name('platinum.profile');
 Route::put('/platinum/profile', [UserProfileController::class, 'update'])->name('platinum.profile.update');
-
-//Route::get('/platinum/profile/{RegID}/edit', [UserProfileController::class,'editPlatinumProfile'])->name('platinum.profile.edit');
-//Route::put('/platinum/update/{RegID}', [UserProfileController::class,'updatePlatinumProfile'])->name('platinum.profile.update');
+Route::get('/platinum/profile/edit', [UserProfileController::class, 'edit'])->name('platinum.profile.edit');
+Route::get('/platinum/search', [UserProfileController::class, 'search'])->name('platinum.search');
+Route::get('/platinum/profile/{id}', [UserProfileController::class, 'viewProfile'])->name('platinum.profile.view');
 
 //Module 2 (Expert)
-Route::get('/Expert', [ExpertController::class, 'expertView'])->name('expertView');
+Route::get('experts/create-step2', [ExpertController::class, 'createStep2'])->name('experts.create.step2');
+Route::post('experts/create-step2', [ExpertController::class, 'postCreateStep2'])->name('experts.post.create.step2');
+Route::get('experts/create-step3', [ExpertController::class, 'createStep3'])->name('experts.create.step3');
+Route::post('experts/create-step3', [ExpertController::class, 'postCreateStep3'])->name('experts.post.create.step3');
+Route::get('experts/create-step1', [ExpertController::class, 'createStep1'])->name('experts.create.step1');
+Route::post('experts/create-step1', [ExpertController::class, 'postCreateStep1'])->name('experts.post.create.step1');
 
+Route::resource('experts', ExpertController::class);
+Route::get('experts', [ExpertController::class, 'index'])->name('experts.index');
+Route::get('experts/{expert}', [ExpertController::class, 'show'])->name('experts.show');
+Route::resource('experts', ExpertController::class)->except(['create', 'store']);
 
 //Module 3 (Publication)
 Route::resource('/Publication', PublicationController::class);

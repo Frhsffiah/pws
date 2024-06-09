@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('eInstitution');
             $table->string('eEmail')->unique();
             $table->string('ePhone');
-        //    $table->string('Platinum_ID')->references('Platinum_ID')->on('platinums')->onDelete('cascade');
+            $table->unsignedBigInteger('RegID');
+            $table->foreign('RegID')->references('RegID')->on('registrations')->onDelete('cascade');
         });
     }
 

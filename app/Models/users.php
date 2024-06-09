@@ -3,20 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class users extends Model
+class users extends Authenticatable
 {
     use HasFactory;
 
-    protected $table = 'users';
-
-    /**
-     * The attributes that are mass assignable.
-     */
     protected $fillable = [
-        'email',
-        'role',
-        'password',
+        'email', 'role', 'password', 'RegID'
     ];
+
+    public function registration()
+    {
+        return $this->belongsTo(Registration::class, 'RegID', 'RegID');
+    }
 }
