@@ -53,7 +53,7 @@
     }
 
     .edit-btn, .view-btn {
-        background-color: #4CAF50;
+        background-color: var(--pink-color);
         color: white;
         padding: 5px 10px;
         border: none;
@@ -62,15 +62,15 @@
     }
 
     .edit-btn:hover, .view-btn:hover {
-        background-color: #45a049;
+        background-color: #575757;
     }
 
     .view-btn {
-        background-color: #2196F3;
+        background-color: var(--pink-color);
     }
 
     .view-btn:hover {
-        background-color: #1976D2;
+        background-color: #575757;
     }
 </style>
 
