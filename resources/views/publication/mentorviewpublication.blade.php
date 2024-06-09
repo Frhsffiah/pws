@@ -1,6 +1,6 @@
-@extends('components.platinumLayout')
+@extends('components.mentorLayout')
 
-@section('platinum')
+@section('mentor')
 <div class="container">
     <h2>View Publication</h2>
     <div class="publication-details">

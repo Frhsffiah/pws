@@ -50,7 +50,7 @@ class PublicationController extends Controller
             'Pub_author' => $request->input('Pub_author'),
             'Pub_date' => $request->input('Pub_date'),
             'Pub_DOI' => $request->input('Pub_DOI'),
-            'Platinum_ID' => $request->input('Platinum_ID'),
+            'RegID' => $request->input('RegID'),
             'Mentor_ID' => $request->input('Mentor_ID'),
         ]);
     
@@ -99,5 +99,43 @@ public function view($id)
     return view('publication.viewpublication', compact('publication'));
 }
 
+public function showSearch(Request $request)
+{
+    $query = $request->input('query');
+    $publications = collect(); // Initialize an empty collection
+
+    if ($query) {
+        $publications = Publication::query()
+            ->where('Pub_Title', 'LIKE', "%{$query}%")
+            ->orWhere('Pub_type', 'LIKE', "%{$query}%")
+            ->get();
+    }
+
+    return view('publication.searchpublication', compact('publications'));
+}
+
+public function showSearchMentor(Request $request)
+{
+    $query = $request->input('query');
+    $publications = Publication::query()
+        ->where('Pub_Title', 'LIKE', "%{$query}%")
+        ->orWhere('Pub_type', 'LIKE', "%{$query}%")
+        ->orWhere('Pub_author', 'LIKE', "%{$query}%")
+        ->get();
+
+    return view('publication.mentorsearchandlist', compact('publications'));
+}
+
+public function viewMentor($id)
+{
+    $publication = Publication::findOrFail($id);
+    return view('publication.mentorviewpublication', compact('publication'));
+}
+
+public function print()
+{
+    $publications = Publication::get(); // Retrieve all publications
+    return view('publication.mentorprintpublication', compact('publications'));
+}
 
 }

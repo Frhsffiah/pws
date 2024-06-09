@@ -32,7 +32,7 @@
         width: 45%;
         margin: 10px 0;
         padding: 15px;
-        background-color: #11101d;
+        background-color: var(--pink-color);
         color: #ffffff;
         border: none;
         cursor: pointer;
@@ -50,7 +50,7 @@
 <div class="manage-publications-box">
     <h2>Manage Publications:</h2>
     <div class="buttons-container">
-        <button class="publication-button" onclick="redirectTo('search')">
+        <button class="publication-button" onclick="window.location.href='{{ url('searchpublication') }}'">
             <i class='bx bx-search'></i> Search Publications
         </button>
         <button class="publication-button" onclick="window.location.href='{{ url('listpublication') }}'">

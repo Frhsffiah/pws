@@ -52,23 +52,23 @@
     </style>
 </head>
 <body>
-
 <div class="container">
     <h2>Reset Password</h2>
-    <form id="resetPasswordForm" action="{{ route('login') }}" onsubmit="return validatePasswords()">
+    <form id="resetPasswordForm" action="{{ route('handleResetPassword') }}" method="POST" onsubmit="return validatePasswords()">
+        @csrf
+        <input type="hidden" name="token" value="{{ $token }}">
         <div class="form-group">
             <label for="newPassword">Enter New Password</label>
-            <input type="password" id="newPassword" name="newPassword" required>
+            <input type="password" id="newPassword" name="password" required>
         </div>
         <div class="form-group">
             <label for="confirmPassword">Re-enter New Password</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" required>
+            <input type="password" id="confirmPassword" name="password_confirmation" required>
         </div>
         <div class="error-message" id="errorMessage">Passwords do not match.</div>
         <button type="submit">Submit</button>
     </form>
 </div>
-
 <script>
     function validatePasswords() {
         const newPassword = document.getElementById('newPassword').value;
@@ -83,6 +83,5 @@
         return true;
     }
 </script>
-
 </body>
 </html>

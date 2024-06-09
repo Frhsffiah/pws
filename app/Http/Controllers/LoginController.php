@@ -9,6 +9,7 @@ use App\Models\Registration;
 use App\Models\Users;
 use Illuminate\Support\Facades\Hash;
 
+use Illuminate\Support\Facades\Password;
 
 class LoginController extends Controller
 {
@@ -17,10 +18,23 @@ class LoginController extends Controller
         return view('login.login_page');
     }
 
-    public function forgotPasswordPage()
+    public function showForgotPasswordForm()
     {
         return view('login.forgot_password_page');
     }
+
+    public function handleForgotPassword(Request $request)
+{
+    $request->validate(['email' => 'required|email']);
+
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
+
+    return $status === Password::RESET_LINK_SENT
+        ? response()->json(['status' => __($status)], 200)
+        : response()->json(['error' => __($status)], 400);
+}
 
     public function platinumPage()
     {
@@ -159,4 +173,6 @@ class LoginController extends Controller
     
         return redirect('/Login')->with('success', 'You have been logged out.');
     }
+
+    
 }

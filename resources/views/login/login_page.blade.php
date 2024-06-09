@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Form</title>
     <link href="{{ asset('Module_1/login.css') }}" rel="stylesheet">
 </head>
-
 <body>
     <div class="main">
         <h3>LOGIN</h3>
@@ -14,11 +13,11 @@
             @csrf
 
             <!-- Display Success Message -->
-        @if (session('success'))
-            <div class="success-message">
-                {{ session('success') }}
-            </div>
-        @endif
+            @if (session('success'))
+                <div class="success-message">
+                    {{ session('success') }}
+                </div>
+            @endif
 
             @if ($errors->any())
                 <div class="error-message">
@@ -57,5 +56,4 @@
         &copy; e-Platinum World 2024 All Rights Reserved.
     </footer>
 </body>
-
 </html>

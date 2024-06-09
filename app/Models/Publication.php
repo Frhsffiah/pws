@@ -22,7 +22,7 @@ class Publication extends Model
         'Pub_date',
         'Pub_type', 
         'Pub_DOI', 
-        'Platinum_ID', 
+        'RegID', 
         'Mentor_ID', 
     ];
 }

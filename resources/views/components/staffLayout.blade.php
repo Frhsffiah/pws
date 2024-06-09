@@ -383,7 +383,7 @@
 
             <ul class="menu_items submenu">
               <a href="#" class="nav_link sublink">Platinum Profile</a>
-              <a href="#" class="nav_link sublink">Platinum Report</a>
+              <a href="{{ route('reports.generate.form') }}" class="nav_link sublink">Platinum Report</a>
               <a href="{{ route('registers.create') }}" class="nav_link sublink">Registration</a>
               <a href="{{ route('registers.index') }}" class="nav_link sublink">List Registration</a>
             </ul>
