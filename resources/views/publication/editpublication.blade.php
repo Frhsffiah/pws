@@ -103,7 +103,7 @@
     }
 
     .upload-btn {
-        background-color: #4CAF50;
+        background-color: var(--pink-color);
         color: white;
         padding: 10px 20px;
         border: none;
@@ -112,7 +112,7 @@
     }
 
     .upload-btn:hover {
-        background-color: #45a049;
+        background-color: #575757;
     }
 
     .alert {
