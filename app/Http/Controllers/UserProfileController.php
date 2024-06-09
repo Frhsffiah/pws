@@ -74,27 +74,28 @@ class UserProfileController extends Controller
         return redirect()->route('platinum.profile')->with('success', 'Profile updated successfully!.');
     }
 
-}
+        public function search(Request $request)
+    {
+        $searchName = $request->input('searchName');
 
+        // Fetch profiles that match the search name
+        $profiles = Registration::where('R_FullName', 'LIKE', '%' . $searchName . '%')->get();
 
-    public function search(Request $request)
-{
-    $searchName = $request->input('searchName');
-
-    // Fetch profiles that match the search name
-    $profiles = Registration::where('R_FullName', 'LIKE', '%' . $searchName . '%')->get();
-
-    return view('profile.Platinum.viewOthersPlatinumProfilePage', ['profiles' => $profiles]);
-}
-
-public function viewProfile($id)
-{
-    $registration = Registration::find($id);
-
-    if (!$registration) {
-        return redirect()->route('platinum.search')->with('error', 'Profile not found.');
+        return view('profile.Platinum.viewOthersPlatinumProfilePage', ['profiles' => $profiles]);
     }
 
-    return view('profile.Platinum.viewPlatinumProfilePage', ['registration' => $registration]);
+    public function viewProfile($id)
+    {
+        $registration = Registration::find($id);
+
+        if (!$registration) {
+            return redirect()->route('platinum.search')->with('error', 'Profile not found.');
+        }
+
+        return view('profile.Platinum.viewPlatinumProfilePage', ['registration' => $registration]);
+    }
+
+
 }
-}
+
+

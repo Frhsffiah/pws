@@ -114,5 +114,28 @@ public function showSearch(Request $request)
     return view('publication.searchpublication', compact('publications'));
 }
 
+public function showSearchMentor(Request $request)
+{
+    $query = $request->input('query');
+    $publications = Publication::query()
+        ->where('Pub_Title', 'LIKE', "%{$query}%")
+        ->orWhere('Pub_type', 'LIKE', "%{$query}%")
+        ->orWhere('Pub_author', 'LIKE', "%{$query}%")
+        ->get();
+
+    return view('publication.mentorsearchandlist', compact('publications'));
+}
+
+public function viewMentor($id)
+{
+    $publication = Publication::findOrFail($id);
+    return view('publication.mentorviewpublication', compact('publication'));
+}
+
+public function print()
+{
+    $publications = Publication::get(); // Retrieve all publications
+    return view('publication.mentorprintpublication', compact('publications'));
+}
 
 }

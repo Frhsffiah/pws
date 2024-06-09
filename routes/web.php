@@ -81,5 +81,6 @@ Route::get('/editpublication/{id}', [PublicationController::class, 'edit'])->nam
 Route::post('/editpublication/{id}', [PublicationController::class, 'update'])->name('Publication.update');
 Route::get('/viewpublication/{id}', [PublicationController::class, 'view'])->name('Publication.view');
 Route::get('/searchpublication', [PublicationController::class, 'showSearch'])->name('Publication.search');
-
-
+Route::get('/Mentorpublication', [PublicationController::class, 'showSearchMentor'])->name('Publication.search');
+Route::get('/mentorviewpublication/{id}', [PublicationController::class, 'viewMentor'])->name('Publication.viewMentor');
+Route::get('/mentorprintpublication', [PublicationController::class, 'print'])->name('Publication.print');
