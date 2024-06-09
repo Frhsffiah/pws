@@ -52,10 +52,9 @@ Route::post('/userRegister', [LoginController::class, 'userPost'])->name('userPo
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
-Route::middleware('auth')->group(function () {
 Route::get('/reports/generate', [ReportController::class, 'showGenerateReportForm'])->name('reports.generate.form');
 Route::post('/reports/generate', [ReportController::class, 'generateReport'])->name('reports.generate');
-});
+
  
 
 //Module 1 (UserProfile)
