@@ -145,13 +145,21 @@ class ExpertController extends Controller
         return redirect()->route('experts.index')->with('success', 'Expert added successfully.');
     }
 
-    public function allExperts()
+    public function allExperts(Request $request)
     {
-        // Retrieve all experts from the database
-        $allExperts = Expert::all();
+        $query = Expert::query();
 
-        return view('experts.allExpert', compact('allExperts'));
-    }
+         if ($request->filled('search')) {
+             $searchTerm = $request->search;
+            $query->whereHas('researches', function ($researchQuery) use ($searchTerm) {
+            $researchQuery->where('eDomain', 'like', '%' . $searchTerm . '%');
+        });
+        }
+
+        $allExperts = $query->paginate(5);
+
+         return view('experts.allExpert', compact('allExperts'));
+    }   
   
     /**
      * Display the specified resource.

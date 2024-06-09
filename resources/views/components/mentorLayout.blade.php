@@ -382,11 +382,7 @@
           <!-- duplicate this li tag if you want to add or remove  navlink with submenu -->
           <!-- start -->
           <li class="item">
-<<<<<<< HEAD
             <a href="{{ route('experts.mentor') }}" class="nav_link">
-=======
-            <a href="#"  class="nav_link">
->>>>>>> cabc6b0a52924f92497482a02acc9667f31a5bce
               <span class="navlink_icon">
               <i class='bx bx-book-reader'></i>
               </span>

@@ -64,9 +64,6 @@ Route::get('/platinum/profile/{id}', [UserProfileController::class, 'viewProfile
 Route::get('/platinum/profile/view/{id}', [UserProfileController::class, 'viewOtherProfile'])->name('platinum.other.view');
 
 
-
-
-
 //Module 2 (Expert)
 Route::get('/experts/mentor', [ExpertController::class, 'mentorExpert'])->name('experts.mentor');
 Route::get('experts/create-step1', [ExpertController::class, 'createStep1'])->name('experts.create.step1');
