@@ -23,6 +23,8 @@
             --blue-color: #4070f4;
             --grey-color: #707070;
             --grey-color-light: #aaa;
+            --purple-color: #C3B1E1;
+            --purple2-color: #CCCCFF;
         }
         body {
             background-color: #e7f2fd;
@@ -44,7 +46,7 @@
             top: 0;
             width: 100%;
             left: 0;
-            background-color: var(--white-color);
+            background-color: var(--purple-color);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -95,7 +97,7 @@
 
         /* sidebar */
         .sidebar {
-            background-color: var(--white-color);
+            background-color: var(--purple-color);
             width: 260px;
             position: fixed;
             top: 0;
@@ -167,7 +169,7 @@
             left: -20px;
         }
         .navlink_icon:hover {
-            background: var(--blue-color);
+            background: var(--purple2-color);
         }
         .sidebar .nav_link {
             display: flex;
@@ -184,7 +186,7 @@
         }
         .nav_link:hover {
             color: var(--white-color);
-            background: var(--blue-color);
+            background: var(--purple2-color);
         }
         .sidebar.close .nav_link:hover {
             background: var(--white-color);
@@ -232,7 +234,7 @@
             width: 100%;
             color: var(--grey-color);
             border-top: 1px solid var(--grey-color-light);
-            background-color: var(--white-color);
+            background-color: var(--purple-color);
         }
         .bottom i {
             font-size: 20px;
@@ -314,7 +316,7 @@
         }
         .logout-button:hover {
             color: var(--white-color);
-            background-color: var(--blue-color);
+            background-color: var(--purple2-color);
         }
         .sidebar.close .logout-button span {
             display: none;
@@ -331,6 +333,7 @@
     <nav class="navbar">
       <div class="logo_item">
         <i class="bx bx-menu" id="sidebarOpen"></i>
+        <img src="{{ asset('logo.png') }}" alt="">
        </i>e-Platinum World
       </div>
 
