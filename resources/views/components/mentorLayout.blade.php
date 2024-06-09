@@ -382,7 +382,7 @@
           <!-- duplicate this li tag if you want to add or remove  navlink with submenu -->
           <!-- start -->
           <li class="item">
-            <a href="#" class="nav_link">
+            <a href="#"  class="nav_link">
               <span class="navlink_icon">
               <i class='bx bx-book-reader'></i>
               </span>
@@ -397,7 +397,7 @@
           <!-- duplicate these li tag if you want to add or remove navlink only -->
           <!-- Start -->
           <li class="item">
-            <a href="#" class="nav_link">
+            <a href="" class="nav_link">
               <span class="navlink_icon">
               <i class='bx bx-book'></i>
               </span>

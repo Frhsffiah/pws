@@ -60,10 +60,12 @@
 
 </style>
 
+<div class="main-header">
+<h2>Search Publications</h2>
+</div>
 <div class="search-container">
-    <h2>Search Publications</h2>
     <form method="GET" action="{{ route('Publication.search') }}">
-        <input type="text" name="query" class="search-input" placeholder="Enter publication title or type">
+        <input type="text" name="query" class="search-input" placeholder="Search publication title or type">
         <button type="submit" class="search-button">Search</button>
     </form>
 

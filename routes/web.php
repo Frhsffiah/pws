@@ -80,5 +80,6 @@ Route::get('/listpublication', [PublicationController::class, 'showList'])->name
 Route::get('/uploadpublication', [PublicationController::class, 'showUpload'])->name('Publication.showUpload');
 Route::post('/uploadpublication', [PublicationController::class, 'upload'])->name('Publication.store');
 Route::get('/searchpublication', [PublicationController::class, 'showSearch'])->name('Publication.search');
-
-
+Route::get('/Mentorpublication', [PublicationController::class, 'showSearchMentor'])->name('Publication.search');
+Route::get('/mentorviewpublication/{id}', [PublicationController::class, 'viewMentor'])->name('Publication.viewMentor');
+Route::get('/mentorprintpublication', [PublicationController::class, 'print'])->name('Publication.print');

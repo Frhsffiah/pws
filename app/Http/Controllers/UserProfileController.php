@@ -73,7 +73,7 @@ class UserProfileController extends Controller
         return redirect()->route('platinum.profile')->with('success', 'Profile updated successfully!.');
     }
 
-    public function search(Request $request)
+        public function search(Request $request)
     {
         $searchName = $request->input('searchName');
 
@@ -104,4 +104,5 @@ class UserProfileController extends Controller
     
         return view('profile.Platinum.viewOtherProfile', ['registration' => $registration]);
     }
+
 }
