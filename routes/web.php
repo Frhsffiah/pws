@@ -97,3 +97,5 @@ Route::get('/searchpublication', [PublicationController::class, 'showSearch'])->
 Route::get('/Mentorpublication', [PublicationController::class, 'showSearchMentor'])->name('Publication.searchMentor');
 Route::get('/mentorviewpublication/{id}', [PublicationController::class, 'viewMentor'])->name('Publication.viewMentor');
 Route::get('/mentorprintpublication', [PublicationController::class, 'print'])->name('Publication.print');
+Route::get('/Publication/download/{id}', [PublicationController::class, 'download'])->name('Publication.download');
+Route::get('/Publication/file/{id}', [PublicationController::class, 'showFile'])->name('Publication.showFile');

@@ -32,5 +32,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('publications');
+        $table->dropColumn('Pub_File_Content');
     }
 };
