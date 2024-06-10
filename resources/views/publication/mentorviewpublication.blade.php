@@ -14,12 +14,28 @@
             <p>DOI: {{ $publication->Pub_DOI }}</p>
             <p>Author: {{ $publication->Pub_author }}</p>
             @if($publication->Pub_File)
-                <a href="{{ Storage::url($publication->Pub_File) }}" class="download-btn" target="_blank">Download</a>
+            <div>
+                <a href="{{ route('Publication.download', $publication->PubID) }}" class="btn-primary">Download File</a>
+            </div>
             @endif
         </div>
         
         <div class="abstract-box">
             <h3>Abstract</h3>
+            @if($publication->Pub_File)
+            <div>
+            @php
+                $fileExtension = pathinfo($publication->Pub_File, PATHINFO_EXTENSION);
+            @endphp
+            @if(in_array($fileExtension, ['pdf', 'jpg', 'jpeg', 'png']))
+                <iframe src="{{ route('Publication.showFile', $publication->PubID) }}" width="100%" height="600px"></iframe>
+            @elseif(in_array($fileExtension, ['doc', 'docx']))
+                <iframe src="https://docs.google.com/viewer?url={{ asset('storage/' . $publication->Pub_File) }}&embedded=true" width="100%" height="600px"></iframe>
+            @else
+                <p>Unsupported file type for inline display.</p>
+            @endif
+            </div>
+    @endif
             <p>Technical engineers have always been the primary developers of embedded software-intensive systems. Nowadays,
                 the rise of connected devices and the need for highly trained personnel in technical domains has led to the
                 growth of specific technical degree programs, combining technical engineering and software engineering.
@@ -87,18 +103,25 @@
         margin-left: 10px;
         background-color: blue;
     }
-
-    .download-btn {
-        display: inline-block;
-        padding: 8px 15px;
-        background-color: red;
-        color: white;
-        border-radius: 5px;
-        text-decoration: none;
+    .btn-primary {
+        color:#fff;
+        background-color: #0d6efd;
+        border-color:#0d6efd;
     }
 
-    .download-btn:hover {
-        background-color: darkred;
+    .btn{
+        display: inline-block;
+        font-weight: 400;
+        line-height:1.5;
+        text-align: center;
+        text-decoration: none;
+        vertical-align: middle;
+        cursor: pointer;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        border-radius: .25rem;
     }
 
     .abstract-box {

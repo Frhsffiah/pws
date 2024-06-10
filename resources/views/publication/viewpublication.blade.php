@@ -14,12 +14,28 @@
             <p>DOI: {{ $publication->Pub_DOI }}</p>
             <p>Author: {{ $publication->Pub_author }}</p>
             @if($publication->Pub_File)
-                <a href="{{ Storage::url($publication->Pub_File) }}" class="download-btn" target="_blank">Download</a>
+            <div>
+                <a href="{{ route('Publication.download', $publication->PubID) }}" class="btn btn-primary">Download File</a>
+            </div>
             @endif
         </div>
         
         <div class="abstract-box">
             <h3>Abstract</h3>
+            @if($publication->Pub_File)
+            <div>
+            @php
+                $fileExtension = pathinfo($publication->Pub_File, PATHINFO_EXTENSION);
+            @endphp
+            @if(in_array($fileExtension, ['pdf', 'jpg', 'jpeg', 'png']))
+                 <iframe src="{{ route('Publication.showFile', $publication->PubID) }}" width="100%" height="600px"></iframe>
+            @elseif(in_array($fileExtension, ['doc', 'docx']))
+                <iframe src="https://docs.google.com/viewer?url={{ asset('storage/' . $publication->Pub_File) }}&embedded=true" width="100%" height="600px"></iframe>
+            @else
+                <p>Unsupported file type for inline display.</p>
+            @endif
+            </div>
+    @endif
             <p>Fundamentals of Networking is an immersive exploration of the interconnected networks that powers the modern world, 
                 revealing its role as the digital world’s foundation. Explore the fundamental principles underpinning the vast network 
                 infrastructure that empowers knowledge, fosters innovation, and connects individuals worldwide in this captivating 
