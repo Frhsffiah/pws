@@ -22,6 +22,15 @@
         
         <div class="abstract-box">
             <h3>Abstract</h3>
+            <p>Fundamentals of Networking is an immersive exploration of the interconnected networks that powers the modern world, 
+                revealing its role as the digital world’s foundation. Explore the fundamental principles underpinning the vast network 
+                infrastructure that empowers knowledge, fosters innovation, and connects individuals worldwide in this captivating 
+                investigation.This comprehensive book gives you the skills to successfully negotiate the dynamic networking environment, 
+                covering everything from network architecture fundamentals to data transfer complexities. Learn the inner workings 
+                of IP addressing, subnetting and routing and the fundamentals of network protocols such as TCP/IP, DNS, DHCP. With 
+                Fundamentals of Networking as your trusted companion, you’ll understand the inner workings of routers, switches and 
+                firewalls and gain valuable insights into network security and troubleshooting.
+                </p>
             @if($publication->Pub_File)
             <div>
             @php
@@ -36,18 +45,6 @@
             @endif
             </div>
     @endif
-            <p>Fundamentals of Networking is an immersive exploration of the interconnected networks that powers the modern world, 
-                revealing its role as the digital world’s foundation. Explore the fundamental principles underpinning the vast network 
-                infrastructure that empowers knowledge, fosters innovation, and connects individuals worldwide in this captivating 
-                investigation.This comprehensive book gives you the skills to successfully negotiate the dynamic networking environment, 
-                covering everything from network architecture fundamentals to data transfer complexities. Learn the inner workings 
-                of IP addressing, subnetting and routing and the fundamentals of network protocols such as TCP/IP, DNS, DHCP. With 
-                Fundamentals of Networking as your trusted companion, you’ll understand the inner workings of routers, switches and 
-                firewalls and gain valuable insights into network security and troubleshooting. Explore the world of wireless network 
-                technology, decipher the mysteries of WIFI and harness the power of emergent technologies such as IoT and cloud computing. 
-                Whether you are interested in becoming a Network Engineer or an IT professional or want to learn more about today’s networks, 
-                Fundamentals of Networking will help you discover the incredible possibilities of today’s interconnected world. Today, embark 
-                on this illuminating journey and harness the future-shaping power of networks.</p>
         </div>
     </div>
 </div>
@@ -71,7 +68,7 @@
         color: white;
         border-radius: 5px;
         text-decoration: none;
-        margin-left: 1200px;
+        margin-left: 1060px;
         margin-bottom: 20px;
     }
 
@@ -106,25 +103,34 @@
         background-color: blue;
     }
 
-    .download-btn {
-        display: inline-block;
-        padding: 8px 15px;
-        background-color: red;
-        color: white;
-        border-radius: 5px;
-        text-decoration: none;
-    }
-
-    .download-btn:hover {
-        background-color: darkred;
-    }
-
     .abstract-box {
         flex: 1;
         border: 1px solid #ccc;
         border-radius: 10px;
         padding: 20px;
         margin-top: 20px;
+    }
+
+    .btn-primary {
+    background-color: var(--pink-color);
+    color: white;
+    border-color: #0d6efd;
+    
+    }
+
+    .btn {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    border-radius: .25rem;
     }
 </style>
 @endsection

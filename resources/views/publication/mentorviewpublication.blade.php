@@ -6,7 +6,7 @@
     <a href="{{ route('Publication.searchMentor') }}" class="back-btn">Back</a>
     <div class="publication-details">
         <div class="details-box">
-        <div class="title-container">
+            <div class="title-container">
                 <h3>{{ $publication->Pub_Title }}</h3>
                 <div class="side-box">{{ $publication->Pub_type }}</div>
             </div>
@@ -22,6 +22,15 @@
         
         <div class="abstract-box">
             <h3>Abstract</h3>
+            <p>Fundamentals of Networking is an immersive exploration of the interconnected networks that powers the modern world, 
+                revealing its role as the digital world’s foundation. Explore the fundamental principles underpinning the vast network 
+                infrastructure that empowers knowledge, fosters innovation, and connects individuals worldwide in this captivating 
+                investigation.This comprehensive book gives you the skills to successfully negotiate the dynamic networking environment, 
+                covering everything from network architecture fundamentals to data transfer complexities. Learn the inner workings 
+                of IP addressing, subnetting and routing and the fundamentals of network protocols such as TCP/IP, DNS, DHCP. With 
+                Fundamentals of Networking as your trusted companion, you’ll understand the inner workings of routers, switches and 
+                firewalls and gain valuable insights into network security and troubleshooting.
+                </p>
             @if($publication->Pub_File)
             <div>
             @php
@@ -35,18 +44,7 @@
                 <p>Unsupported file type for inline display.</p>
             @endif
             </div>
-    @endif
-            <p>Technical engineers have always been the primary developers of embedded software-intensive systems. Nowadays,
-                the rise of connected devices and the need for highly trained personnel in technical domains has led to the
-                growth of specific technical degree programs, combining technical engineering and software engineering.
-                This raises challenges for software engineering education in these technical engineering disciplines. 
-                Among others, different backgrounds, the need for very specialized software, and time constraints, limit 
-                the usefulness of classical software engineering education approaches. This paper compares the state of 
-                the art in software engineering education for traditional computer science and software engineering degree 
-                programs with the needs of robotics software engineering education. From our experiences in teaching 
-                software engineering to robotics students, we conclude that software engineering education for technical
-                engineering degrees need to emphasize social aspects of software engineering, group work and weighing 
-                advantages and disadvantages between different solution options.</p>
+            @endif
         </div>
     </div>
 </div>
@@ -69,7 +67,7 @@
         color: white;
         border-radius: 5px;
         text-decoration: none;
-        margin-left: 1200px;
+        margin-left: 1040px;
         margin-bottom: 20px;
     }
 
@@ -103,25 +101,23 @@
         margin-left: 10px;
         background-color: blue;
     }
-    .btn-primary {
-        color:#fff;
-        background-color: #0d6efd;
-        border-color:#0d6efd;
-    }
 
-    .btn{
-        display: inline-block;
-        font-weight: 400;
-        line-height:1.5;
-        text-align: center;
-        text-decoration: none;
-        vertical-align: middle;
-        cursor: pointer;
-        user-select: none;
-        border: 1px solid transparent;
-        padding: .375rem .75rem;
-        font-size: 1rem;
-        border-radius: .25rem;
+    .btn-primary {
+    background-color: var(--purple-color);
+    color: white;
+    border-color: #0d6efd;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    border-radius: .25rem;
     }
 
     .abstract-box {
