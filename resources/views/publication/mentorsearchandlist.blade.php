@@ -101,7 +101,7 @@
 </div>
 <div class="search-container">
     <h2>Search Publications</h2>
-    <form method="GET" action="{{ route('Publication.search') }}">
+    <form method="GET" action="{{ route('Publication.searchMentor') }}">
         <input type="text" name="query" class="search-input" placeholder="Publication values For Filter Table @ Search">
         <button type="submit" class="search-button">Search & Filter</button>
     </form>

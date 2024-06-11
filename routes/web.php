@@ -55,8 +55,6 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/reports/generate', [ReportController::class, 'showGenerateReportForm'])->name('reports.generate.form');
 Route::post('/reports/generate', [ReportController::class, 'generateReport'])->name('reports.generate');
 
- 
-
 //Module 1 (UserProfile)
 Route::get('/platinum/profile', [UserProfileController::class,'show'])->name('platinum.profile');
 Route::put('/platinum/profile', [UserProfileController::class, 'update'])->name('platinum.profile.update');
@@ -101,3 +99,5 @@ Route::get('/searchpublication', [PublicationController::class, 'showSearch'])->
 Route::get('/Mentorpublication', [PublicationController::class, 'showSearchMentor'])->name('Publication.searchMentor');
 Route::get('/mentorviewpublication/{id}', [PublicationController::class, 'viewMentor'])->name('Publication.viewMentor');
 Route::get('/mentorprintpublication', [PublicationController::class, 'print'])->name('Publication.print');
+Route::get('/Publication/download/{id}', [PublicationController::class, 'download'])->name('Publication.download');
+Route::get('/Publication/file/{id}', [PublicationController::class, 'showFile'])->name('Publication.showFile');

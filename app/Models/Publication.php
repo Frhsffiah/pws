@@ -21,7 +21,8 @@ class Publication extends Model
         'Pub_author', 
         'Pub_date',
         'Pub_type', 
-        'Pub_DOI', 
+        'Pub_DOI',
+        'Pub_File',
         'RegID', 
         'Mentor_ID', 
     ];
