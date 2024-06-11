@@ -67,7 +67,9 @@ Route::get('/platinum/profile/view/{id}', [UserProfileController::class, 'viewOt
 
 
 //Module 2 (Expert)
+
 Route::get('/experts/mentor', [ExpertController::class, 'mentorExpert'])->name('experts.mentor');
+Route::get('experts/mentor/{expert}', [ExpertController::class, 'mentorShow'])->name('experts.mentorShow');
 Route::get('experts/create-step1', [ExpertController::class, 'createStep1'])->name('experts.create.step1');
 Route::post('experts/create-step1', [ExpertController::class, 'postCreateStep1'])->name('experts.post.create.step1');
 Route::get('experts/create-step2', [ExpertController::class, 'createStep2'])->name('experts.create.step2');
@@ -77,10 +79,10 @@ Route::post('experts/create-step3', [ExpertController::class, 'postCreateStep3']
 Route::resource('experts', ExpertController::class);
 Route::get('experts', [ExpertController::class, 'index'])->name('experts.index');
 Route::get('/allExperts', [ExpertController::class, 'allExperts'])->name('experts.all');// Route for displaying all experts
-
 Route::get('experts/{expert}', [ExpertController::class, 'show'])->name('experts.show');
 Route::resource('experts', ExpertController::class)->except(['create', 'store']);
-Route::get('/Expert', [ExpertController::class, 'expertView'])->name('expertView');
+Route::get('/institution_report', [ExpertController::class, 'institutionReport'])->name('reports.institution');
+//Route::get('/Expert', [ExpertController::class, 'expertView'])->name('expertView');
 
 
 //Module 3 (Publication)

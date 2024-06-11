@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">  
-    <title>e-PWS</title>
+
+    <title>e-PWS Platinum</title>
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
    
     <style>
@@ -18,18 +18,24 @@
             padding: 0;
             box-sizing: border-box;
             font-family: "Poppins", sans-serif;
+
         }
         :root {
             --white-color: #fff;
             --blue-color: #4070f4;
-            --grey-color: #707070;
-            --grey-color-light: #aaa;
-            --pink-color: #ff69b4;
-            --pink2-color: #FFB6C1;
+            --grey-color: white;
+            --grey-color-light: white;
+            --pink-color: #34495E;
+            --pink2-color: #212F3D;
         }
         body {
             background-color: #e7f2fd;
             transition: all 0.5s ease;
+        }
+        h5{
+          font-weight: 600;
+          font-size: 25px;
+          color:white;
         }
         body.dark {
             background-color: #333;
@@ -41,6 +47,7 @@
             --grey-color-light: #aaa;
         }
 
+      
         /* navbar */
         .navbar {
             position: fixed;
@@ -60,8 +67,8 @@
             align-items: center;
             column-gap: 10px;
             font-size: 22px;
-            font-weight: 500;
-            color: var(--blue-color);
+            font-weight: 600;
+            color: white;
         }
         .navbar img {
             width: 35px;
@@ -94,6 +101,7 @@
         .navbar_content i {
             cursor: pointer;
             font-size: 20px;
+            
             color: var(--grey-color);
         }
 
@@ -182,6 +190,7 @@
             text-decoration: none;
             color: var(--grey-color);
             white-space: nowrap;
+           
         }
         .sidebar.close .navlink {
             display: none;
@@ -265,9 +274,9 @@
                 cursor: pointer;
                 color: var(--grey-color);
             }
-            .sidebar.close {
+           /* .sidebar.close {
                 left: -100%;
-            }
+            }*/
             .search_bar {
                 display: none;
             }
@@ -305,7 +314,7 @@
             font-size: 18px;
             color: var(--grey-color);
             border: 1px solid var(--grey-color-light);
-            background-color: var(--white-color);
+            background-color: var(--pink2-color);
             text-align: center;
             border-radius: 8px;
             margin: 10px 20px;
@@ -314,10 +323,10 @@
             top: 500px;
             position:absolute;
         }
-        .logout-button:hover {
+       /* .logout-button:hover {
             color: var(--white-color);
-            background-color: var(--pink2-color);
-        }
+            background-color: var(--white-color);
+        }*/
         .sidebar.close .logout-button span {
             display: none;
         }
@@ -348,7 +357,7 @@
     
 
       <div class="navbar_content">
-        <i class="bi bi-grid"></i>
+      <i class="bi bi-grid"></i>
         <i class='bx bx-sun' id="darkLight"></i>
         <i class='bx bx-bell' ></i>
         <img src="{{ asset('logo.png') }}" alt="" class="profile" />
@@ -357,8 +366,8 @@
 
     <!-- sidebar -->
     <nav class="sidebar">
-      <div class="menu_content">
-        <h5>Platinum</h5>
+      <div class="menu_content"><br>
+        <h5>Platinum</h5><br>
         <ul class="menu_items">
         <div class="menu_title menu_dashboard"></div>
           <!-- duplicate or remove this li tag if you want to add or remove navlink with submenu -->
@@ -393,16 +402,16 @@
             <ul class="menu_items submenu">
               <a href="{{ route('experts.index') }}" class="nav_link sublink">My Expert</a>
               <a href="{{ route('experts.all') }}" class="nav_link sublink">Expert List</a>
+              <a href="{{ route('reports.institution') }}" class="nav_link sublink">Report</a>
             </ul>
           </li>
           <!-- end -->
-        </ul>
 
-        <ul class="menu_items">
+  
           <!--<div class="menu_title menu_editor"></div>-->
           <!-- duplicate these li tag if you want to add or remove navlink only -->
           <!-- Start -->
-          <li class="item">
+         <li class="item">
             <a href="{{ route('Publication.landingpublication') }}" class="nav_link">
               <span class="navlink_icon">
               <i class='bx bx-book'></i>
@@ -411,7 +420,13 @@
             </a>
           </li>
           <!-- End -->
+      </ul>
+
+
         </ul>
+
+    
+     
 
         <!-- Sidebar Open / Close -->
         <div class="sidebar-bottom-container">
@@ -419,12 +434,12 @@
         <i class="lni lni-exit"></i>
         <span>Logout</span>
       </a>
-      <div class="bottom_content">
+  <div class="bottom_content">
         <div class="bottom expand_sidebar">
           <span> Expand</span>
           <i class='bx bx-log-in' ></i>
         </div>
-        <div class="bottom collapse_sidebar">
+      <div class="bottom collapse_sidebar">
           <span> Collapse</span>
           <i class='bx bx-log-out'></i>
         </div>

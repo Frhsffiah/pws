@@ -1,10 +1,9 @@
-@extends('components.platinumLayout')
+@extends('components.mentorLayout')
 
-@section('platinum')
+@section('mentor')
 
 <div class="container">
     <h2>Expert Details</h2>
-    <a href="{{ route('experts.index') }}" class="back-btn">Back</a>
 
     <div class="expert-details">
         <div class="details-box">
@@ -132,4 +131,5 @@
         margin-top: 20px;
     }
 </style>
+
 @endsection

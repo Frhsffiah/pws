@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('ePaperTitle');
             $table->string('eYear');
             $table->string('ePublicationType');
+            $table->string('ePaperFile')->nullable();
             $table->unsignedBigInteger('expertID');
             $table->unsignedBigInteger('eResearchID');
             $table->foreign('expertID')->references('expertID')->on('experts')->onDelete('cascade');

@@ -11,7 +11,7 @@ class Expert_paper extends Model
 
     public $timestamps = false;
     protected $fillable = [
-        'ePaperTitle', 'eYear', 'ePublicationType', 'expertID', 'eResearchID'
+        'ePaperTitle', 'eYear', 'ePublicationType', 'expertID', 'eResearchID', 'ePaperFile'
     ];
 
     public function expert()

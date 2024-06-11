@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <title>Side Navigation Bar in HTML CSS JavaScript</title>
+    <title>e-PWS Staff</title>
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
    
     <style>
@@ -21,14 +21,20 @@
         :root {
             --white-color: #fff;
             --blue-color: #4070f4;
-            --grey-color: #707070;
-            --grey-color-light: #aaa;
-            --green-color: #77DD77;
-            --green2-color: #AAEAAA;
+            --grey-color: white;
+            --grey-color-light: white;
+            --green-color: #148F77;
+            --green2-color:#148F77;
         }
         body {
             background-color: #e7f2fd;
             transition: all 0.5s ease;
+        }
+
+        h5{
+          font-weight: 600;
+          font-size: 25px;
+          color:white;
         }
         body.dark {
             background-color: #333;
@@ -59,8 +65,8 @@
             align-items: center;
             column-gap: 10px;
             font-size: 22px;
-            font-weight: 500;
-            color: var(--blue-color);
+            font-weight: 600;
+            color: white;
         }
         .navbar img {
             width: 35px;
@@ -304,7 +310,7 @@
             font-size: 18px;
             color: var(--grey-color);
             border: 1px solid var(--grey-color-light);
-            background-color: var(--white-color);
+            background-color: var( --green-color);
             text-align: center;
             border-radius: 8px;
             margin: 10px 20px;
@@ -347,8 +353,8 @@
 
     <!-- sidebar -->
     <nav class="sidebar">
-      <div class="menu_content">
-        <h1>Staff</h1>
+      <div class="menu_content"><br>
+        <h5>Staff</h5><br>
         <ul class="menu_items">
         <div class="menu_title menu_dashboard"></div>
           <!-- duplicate or remove this li tag if you want to add or remove navlink with submenu -->

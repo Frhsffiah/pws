@@ -13,6 +13,8 @@ use App\Models\Expert_paper;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Registration;
+use Illuminate\Support\Facades\DB;
+
 
   
 class ExpertController extends Controller
@@ -45,6 +47,9 @@ class ExpertController extends Controller
         return view('experts.index', compact('experts'));
     }
 
+
+
+    
     /**
      * Show the form for creating a new resource.
      */
@@ -56,6 +61,8 @@ class ExpertController extends Controller
         //$registrations = \App\Models\Registration::all();
         return view('experts.create-step1', compact('regID'));
     }
+
+
 
     public function postCreateStep1(Request $request)
     {
@@ -78,10 +85,14 @@ class ExpertController extends Controller
         return redirect()->route('experts.create.step2');
     }
 
+
+
     public function createStep2()
     {
         return view('experts.create-step2');
     }
+
+
 
     public function postCreateStep2(Request $request)
     {
@@ -98,12 +109,17 @@ class ExpertController extends Controller
         return redirect()->route('experts.create.step3');
     }
 
+
+
     public function createStep3()
     {
         return view('experts.create-step3');
     }
 
-    public function postCreateStep3(Request $request)
+
+
+
+    public function postCreateStep3(Request $request) :RedirectResponse
     {
         $request->validate([
             'paperTitle' => 'required|array',
@@ -112,13 +128,56 @@ class ExpertController extends Controller
             'paperYear.*' => 'required|numeric',
             'paperType' => 'required|array',
             'paperType.*' => 'required|string',
+            'ePaperFile' => 'sometimes|array',
+            'ePaperFile.*' => 'nullable|file|mimes:pdf,doc,docx',
         ]);
-
+    
+        $expertData = $request->session()->get('expert');
+        $researchData = $request->session()->get('research');
         $paperData = $request->only(['paperTitle', 'paperYear', 'paperType']);
+        $files = $request->file('ePaperFile');
+    
+        $expert = Expert::create($expertData);
+    
+        foreach ($researchData['researchTitle'] as $index => $title) {
+            $research = Expert_research::create([
+                'eResearchTitle' => $title,
+                'eDomain' => $researchData['researchDomain'][$index],
+                'expertID' => $expert->expertID,
+            ]);
+    
+            $paperFile = isset($files[$index]) ? $files[$index] : null;
+            $filePath = null;
+    
+            if ($paperFile) {
+                $fileName = time() . '_' . $paperFile->getClientOriginalName();
+                $filePath = $paperFile->storeAs('expertpaper', $fileName, 'public');
+            }
+    
+            Expert_paper::create([
+                'ePaperTitle' => $paperData['paperTitle'][$index],
+                'eYear' => $paperData['paperYear'][$index],
+                'ePublicationType' => $paperData['paperType'][$index],
+                'ePaperFile' => $filePath,
+                'expertID' => $expert->expertID,
+                'eResearchID' => $research->eResearchID,
+            ]);
+        }
+    
+
+       /* if (!empty($files) && array_key_exists($index, $files)) {
+            $paper->ePaperFile = $files[$index]->store('papers');
+            $paper->save();
+        }*/
+    
+
+       /* $paperData = $request->only(['paperTitle', 'paperYear', 'paperType']);
         $request->session()->put('paper', $paperData);
         $expertData = $request->session()->get('expert');
         $researchData = $request->session()->get('research');
         $paperData = $request->session()->get('paper');
+
+
 
 
         $expert = Expert::create($expertData);
@@ -140,10 +199,13 @@ class ExpertController extends Controller
                 'expertID' => $expert->expertID,
                 'eResearchID' => Expert_research::where('expertID', $expert->expertID)->first()->eResearchID,
             ]);
-        }
+        }*/
 
         return redirect()->route('experts.index')->with('success', 'Expert added successfully.');
     }
+
+
+
 
     public function allExperts(Request $request)
     {
@@ -161,6 +223,9 @@ class ExpertController extends Controller
          return view('experts.allExpert', compact('allExperts'));
     }   
   
+
+
+
     /**
      * Display the specified resource.
      */
@@ -168,6 +233,8 @@ class ExpertController extends Controller
     {
         return view('experts.show',compact('expert'));
     }
+
+    
   
     /**
      * Show the form for editing the specified resource.
@@ -177,6 +244,9 @@ class ExpertController extends Controller
         return view('experts.edit',compact('expert'));
     }
   
+
+
+
     /**
      * Update the specified resource in storage.
      */
@@ -195,18 +265,37 @@ class ExpertController extends Controller
                         ->with('success','Expert updated successfully');
     }
 
-    public function mentorExpert(Request $request): View
-    {
-        // Retrieve all experts from the database
-        $experts = Expert::query()
-            ->when($request->has('domain'), function ($query) use ($request) {
-                $query->where('eDomain', 'like', '%' . $request->input('domain') . '%');
-            })
-            ->paginate(10);
 
-        return view('experts.mentorExpert', compact('experts'));
+
+
+
+    public function mentorExpert(Request $request)
+    {
+        $query = Expert::query();
+
+         if ($request->filled('search')) {
+             $searchTerm = $request->search;
+            $query->whereHas('researches', function ($researchQuery) use ($searchTerm) {
+            $researchQuery->where('eDomain', 'like', '%' . $searchTerm . '%');
+        });
+        }
+
+        $allExperts = $query->paginate(5);
+
+         return view('experts.mentorExpert', compact('allExperts'));
+    }   
+
+
+
+
+    public function mentorShow(Expert $expert): View
+    {
+        return view('experts.mentorShow',compact('expert'));
     }
+   
   
+
+
     /**
      * Remove the specified resource from storage.
      */
@@ -217,4 +306,26 @@ class ExpertController extends Controller
         return redirect()->route('experts.index')
                         ->with('success','Expert deleted successfully');
     }
+
+
+
+
+    public function institutionReport()
+    {
+        // Retrieve data from the database
+        $expertCounts = Expert::query()
+            ->select('eInstitution', DB::raw('COUNT(*) as count'))
+            ->groupBy('eInstitution')
+            ->orderByDesc('count')
+            ->limit(10) // Limit to top 10 institutions
+            ->get();
+
+        // Prepare data for chart
+        $labels = $expertCounts->pluck('eInstitution');
+        $counts = $expertCounts->pluck('count');
+
+        return view('experts.institution_report', compact('labels', 'counts'));
+    }
+
+
 }
