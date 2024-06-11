@@ -20,7 +20,10 @@ class Expert extends Model
     return $this->hasMany(Expert_research::class, 'expertID', 'expertID');
 }
 
-
+public function papers()
+{
+    return $this->hasMany(Expert_paper::class, 'eResearchID');
+}
     
 
 }

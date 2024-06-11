@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Expert_paper extends Model
 {
     use HasFactory;
-
+    protected $primaryKey = 'ePaperID';
     public $timestamps = false;
     protected $fillable = [
         'ePaperTitle', 'eYear', 'ePublicationType', 'expertID', 'eResearchID', 'ePaperFile'

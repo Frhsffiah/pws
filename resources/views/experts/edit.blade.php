@@ -6,7 +6,7 @@
     <h2 class="header-title">Edit Expert</h2>
 
     <div class="form-container">
-        <form method="POST" action="{{ route('experts.update', $expert->expertID) }}" class="centered-form">
+        <form method="POST" action="{{ route('experts.update', $expert->expertID) }}" enctype="multipart/form-data" class="centered-form">
             @csrf
             @method('PUT')
             <div class="rounded-form">
@@ -20,6 +20,7 @@
                     </div>
                 @endif
 
+                <!-- Expert Details -->
                 <label for="eName">Name:</label>
                 <input type="text" id="eName" name="eName" value="{{ $expert->eName }}" class="form-control" placeholder="Name">
 
@@ -31,6 +32,44 @@
 
                 <label for="ePhone">Phone Number:</label>
                 <input type="text" id="ePhone" name="ePhone" value="{{ $expert->ePhone }}" class="form-control" placeholder="Phone Number">
+
+                <!-- Research Details -->
+                <h3 class="header-title">Research Details</h3>
+                <div id="research-section">
+                    @foreach($expert->researches as $research)
+                        <div class="research-item">
+                            <input type="hidden" name="researchID[]" value="{{ $research->eResearchID }}">
+                            <label for="researchTitle">Research Title:</label>
+                            <input type="text" name="researchTitle[]" value="{{ $research->eResearchTitle }}" class="form-control" placeholder="Research Title">
+
+                            <label for="researchDomain">Domain:</label>
+                            <input type="text" name="researchDomain[]" value="{{ $research->eDomain }}" class="form-control" placeholder="Domain">
+                        </div>
+                    @endforeach
+                </div>
+                <button type="button" class="btn btn-secondary add-research">Add More Research</button>
+
+                <!-- Paper Details -->
+                <h3 class="header-title">Paper Details</h3>
+                <div id="paper-section">
+                    @foreach($expert->papers as $paper)
+                        <div class="paper-item">
+                            <input type="hidden" name="paperID[]" value="{{ $paper->ePaperID }}">
+                            <label for="paperTitle">Paper Title:</label>
+                            <input type="text" name="paperTitle[]" value="{{ $paper->ePaperTitle }}" class="form-control" placeholder="Paper Title">
+
+                            <label for="paperYear">Year:</label>
+                            <input type="number" name="paperYear[]" value="{{ $paper->eYear }}" class="form-control" placeholder="Year">
+
+                            <label for="paperType">Publication Type:</label>
+                            <input type="text" name="paperType[]" value="{{ $paper->ePublicationType }}" class="form-control" placeholder="Publication Type">
+
+                            <label for="ePaperFile">Choose file</label>
+                            <input type="file" class="form-control" name="ePaperFile[]" value="{{ $paper->ePaperFile }}">
+                        </div>
+                    @endforeach
+                </div>
+                <button type="button" class="btn btn-secondary add-paper">Add More Paper</button>
             </div>
             <button type="submit" class="upload-btn">Submit</button>
         </form>
@@ -77,7 +116,7 @@
         font-weight: bold;
     }
 
-    input[type="text"], select, input[type="file"], input[type="date"] {
+    input[type="text"], input[type="number"], select, input[type="file"], input[type="date"] {
         width: 100%;
         padding: 10px;
         margin-bottom: 10px;
@@ -119,4 +158,35 @@
         border-color: #ebccd1;
     }
 </style>
+
+<script>
+    document.querySelector('.add-research').addEventListener('click', function() {
+        let researchHtml = `
+            <div class="research-item">
+                <label for="researchTitle">Research Title:</label>
+                <input type="text" name="researchTitle[]" class="form-control" placeholder="Research Title">
+                <label for="researchDomain">Domain:</label>
+                <input type="text" name="researchDomain[]" class="form-control" placeholder="Domain">
+            </div>
+        `;
+        document.querySelector('#research-section').insertAdjacentHTML('beforeend', researchHtml);
+    });
+
+    document.querySelector('.add-paper').addEventListener('click', function() {
+        let paperHtml = `
+            <div class="paper-item">
+                <label for="paperTitle">Paper Title:</label>
+                <input type="text" name="paperTitle[]" class="form-control" placeholder="Paper Title">
+                <label for="paperYear">Year:</label>
+                <input type="number" name="paperYear[]" class="form-control" placeholder="Year">
+                <label for="paperType">Publication Type:</label>
+                <input type="text" name="paperType[]" class="form-control" placeholder="Publication Type">
+                <label for="ePaperFile">Choose file</label>
+                <input type="file" class="form-control" name="ePaperFile[]">
+            </div>
+        `;
+        document.querySelector('#paper-section').insertAdjacentHTML('beforeend', paperHtml);
+    });
+</script>
+
 @endsection

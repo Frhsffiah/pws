@@ -49,7 +49,7 @@ class ExpertController extends Controller
 
 
 
-    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -251,19 +251,60 @@ class ExpertController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Expert $expert): RedirectResponse
-    {
-        $request->validate([
-            'eName' => 'required',
-            'eInstitution' => 'required',
-            'eEmail' => 'required',
-            'ePhone' => 'required',
-        ]);
-        
-        $expert->update($request->all());
-        
-        return redirect()->route('experts.index')
-                        ->with('success','Expert updated successfully');
+{
+    $request->validate([
+        'eName' => 'required',
+        'eInstitution' => 'required',
+        'eEmail' => 'required|email',
+        'ePhone' => 'required|numeric',
+        'researchTitle.*' => 'nullable|string',
+        'researchDomain.*' => 'nullable|string',
+        'paperTitle.*' => 'nullable|string',
+        'paperYear.*' => 'nullable|numeric',
+        'paperType.*' => 'nullable|string',
+        'ePaperFile.*' => 'nullable|file|mimes:pdf,doc,docx|max:10240', // Adjust max file size as needed
+    ]);
+
+    // Update expert details
+    $expert->update($request->only(['eName', 'eInstitution', 'eEmail', 'ePhone']));
+
+    // Update or create research
+    if ($request->has('researchTitle')) {
+        foreach ($request->researchTitle as $key => $title) {
+            $research = $expert->researches()->findOrNew($request->researchID[$key] ?? null);
+            $research->eResearchTitle = $title;
+            $research->eDomain = $request->researchDomain[$key];
+            $research->save();
+        }
     }
+
+    // Update or create papers
+    if ($request->has('paperTitle')) {
+        foreach ($request->paperTitle as $key => $title) {
+            $paper = $expert->papers()->findOrNew($request->paperID[$key] ?? null);//kalau jumpa sama, takyah buat baru
+            $paper->expertID = $expert->expertID; //assign expert id kalau buat baru
+            $paper->ePaperTitle = $title;
+            $paper->eYear = $request->paperYear[$key];
+            $paper->ePublicationType = $request->paperType[$key];
+            
+            // Handle file upload
+            if ($request->hasFile('ePaperFile.'.$key)) {
+                $file = $request->file('ePaperFile.'.$key); // Assuming 'ePaperFile' is the name of your file input field
+                $filename = time() . '_' . $file->getClientOriginalName(); // Get the original file name
+                $filePath = $file->storeAs('expertpaper', $filename, 'public'); // Store the file to the specified disk and path
+
+                // Now you can save the file path to your model or use it as needed
+                $paper->ePaperFile = $filePath;
+                $paper->save();
+                
+            }
+            
+            $paper->save();
+        }
+    }
+
+    return redirect()->route('experts.index')->with('success', 'Expert updated successfully');
+}
 
 
 
