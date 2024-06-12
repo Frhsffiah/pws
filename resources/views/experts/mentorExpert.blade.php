@@ -29,7 +29,7 @@
         </tr>
         
         <!-- LOOP THROUGH EXPERTS -->
-        @php $i = 0 @endphp <!-- Initialize $i outside of the loop -->
+        @php $i = 0 @endphp <!--kene initialize kalau tak , dia tak baca-->
         @foreach ($allExperts as $expert)
             <tr>
                 <td>{{ ++$i }}</td>
