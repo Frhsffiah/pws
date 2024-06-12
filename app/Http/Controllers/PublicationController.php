@@ -27,6 +27,7 @@ class PublicationController extends Controller
 
     public function upload(Request $request)
     {
+        $regID = session('platinum');
         $request->validate([
             'Pub_type' => 'required|string|max:255',
             'Pub_File' => 'required|file|mimes:pdf,doc,docx,jpg,jpeg,png', // add more mime types if necessary
